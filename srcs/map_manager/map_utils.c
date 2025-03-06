@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:18:06 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/06 22:39:04 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/06 22:48:47 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,25 @@ int	check_rectangualr(char **map, t_map *map_info)
 
 int	check_walls(char **map, t_map *map_info)
 {
-	int	i;
-	int	j;
+	int	height_index;
+	int	width_index;
 
-	i = 0;
-	while (i < map_info->height)
+	height_index = 0;
+	while (height_index < map_info->height)
 	{
-		j = 0;
-		while (j < map_info->width)
+		width_index = 0;
+		while (width_index < map_info->width)
 		{
-			if ((i == 0 || ))
+			if ((height_index == 0 || height_index == map_info->height - 1 || \
+					width_index == 0 || width_index == map_info->width - 1) \ 
+					&& map[height_index][width_index] != '1')
+			{
+				write(0, "Error: The map is not surrounded by walls.\n", 43);
+				return (0);
+			}
+			width_index++;
 		}
+		height_index++;
 	}
+	return (1);
 }

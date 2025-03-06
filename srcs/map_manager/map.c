@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 21:46:19 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/06 22:17:25 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/06 22:55:54 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static char	*read_line(int fd)
 	line = malloc(sizeof(char) * 1);
 	if (!line)
 		return (NULL);
-	line[0]; = '\0';
+	line[0] = '\0';
 	bytes_read = read(fd, buffer, 1);
 	buffer[1] = '\0';
 	while (bytes_read > 0 && buffer[0] != '\n')
@@ -106,7 +106,7 @@ char	**read_map(char *filename)
 	line_count = count_lines(filename);
 	if (line_count <= 0)
 	{
-		write(0, "Error: The map is empty or failed to read.\n",43);
+		write(0, "Error: The map is empty or failed to read.\n", 43);
 		return (NULL);
 	}
 	fd = open_map_file(filename);
@@ -116,7 +116,7 @@ char	**read_map(char *filename)
 	if (!map)
 		return (NULL);
 	i = 0;
-	while ((line = read_line(fd)) != NULL && i <line_count)
+	while ((line = read_line(fd)) != NULL && i < line_count)
 		map[i++] = line;
 	map[i] = NULL;
 	close(fd);
