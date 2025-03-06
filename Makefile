@@ -6,7 +6,7 @@
 #    By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/04 20:39:28 by hoskim            #+#    #+#              #
-#    Updated: 2025/03/05 20:39:43 by hoskim           ###   ########seoul.kr   #
+#    Updated: 2025/03/06 17:40:32 by hoskim           ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRC_FILES = main.c game_input.c game_logic.c game_render.c \
 SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJS = $(SRCS:.c=.o)
 
-INCLUDES = -Iincludes -I$(MLX_DIR)
+INCLUDES = -I$(shell pwd)/includes
 
 all: $(NAME)
 
