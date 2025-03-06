@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 19:24:54 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/06 18:24:37 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/06 21:00:16 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		write(0, "Error: Please input only one map file.\n");
+		write(0, "Error: Please input only one map file.\n", 39);
 		return (1);
 	}
 	map = read_map(argv[1]);
@@ -33,9 +33,9 @@ int	main(int argc, char *argv[])
 	}
 	init_game(&game, map);
 	mlx_hook(game.window_instance, 2, 1L<<0, key_press, &game);
-	mlx_hook(game.win, 17, 0, (int (*)())exit_game, &game);
+	mlx_hook(game.window_instance, 17, 0, (int (*)())exit_game, &game);
 	render_map(&game);
-	mlx_loop(game.mlx);
+	mlx_loop(game.mlx_instance);
 	return (0);
 }
 
@@ -54,7 +54,7 @@ void	exit_game(t_game *game)
 void	free_map(char **map)
 {
 	int	i;
-	
+
 	i = 0;
 	while (map[i])
 	{

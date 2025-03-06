@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 23:25:35 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/06 17:37:19 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/06 20:45:58 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_game_data
 	void	*img_collectible;
 	void	*img_exit;
 	void	*img_floor;
-}	t_game
+}	t_game;
 
 typedef struct s_map_data
 {
