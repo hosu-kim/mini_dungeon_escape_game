@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 19:24:54 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/06 21:00:16 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/07 22:45:32 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char *argv[])
 		write(0, "Error: Please input only one map file.\n", 39);
 		return (1);
 	}
-	map = read_map(argv[1]);
+	map = map_reader(argv[1]);
 	if (!map)
 		return (1);
 	if (!validate_map(map, &map_info))

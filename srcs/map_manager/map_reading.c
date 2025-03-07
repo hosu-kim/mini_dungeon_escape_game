@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   map_reading.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 21:46:19 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/07 14:34:04 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/07 22:45:32 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-static int	check_file_extension(char *filename)
+/**
+ * @note checks the file extension '.ber' 
+ * 1. declares variable 'len' and initializes it with 0.
+ * 2. iterates the filename array and count it with len. (while)
+ * 3. checks if the characters of the extension exist in the filename (if)
+ * 4. if OK, returns 1, not OK, returns 0.
+ */
+static int	file_extension_checker(char *filename)
 {
 	int	len;
 
@@ -21,17 +27,17 @@ static int	check_file_extension(char *filename)
 		len++;
 	if (len < 5)
 		return (0);
-	if (filename[len -4] != '.' || filename[len -3] != 'b' || \
-			filename[len - 2] != 'e' || filename[len - 1] != 'r')
+	if (filename[len - 1] != 'r' || filename[len - 2] != 'e' || \
+			filename[len - 3] != 'b' || filename[len - 4] != '.')
 		return (0);
 	return (1);
 }
 
-static int	open_map_file(char *filename)
+static int	map_file_opener(char *filename)
 {
 	int	fd;
 
-	if (!check_file_extension(filename))
+	if (!file_extension_checker(filename))
 	{
 		write(0, "Error: the file extension is not '.ber'.\n", 41);
 		return (-1);
@@ -45,7 +51,7 @@ static int	open_map_file(char *filename)
 	return (fd);
 }
 
-static char	*read_line(int fd)
+static char	*line_reader(int fd)
 {
 	char	buffer[2];
 	char	*line;
@@ -73,17 +79,17 @@ static char	*read_line(int fd)
 	return (line);
 }
 
-static int	count_lines(char *filename)
+static int	line_counter(char *filename)
 {
 	int		fd;
 	char	*line;
 	int		line_count;
 
-	fd = open_map_file(filename);
+	fd = map_file_opener(filename);
 	if (fd == -1)
 		return (-1);
 	line_count = 0;
-	line = read_line(fd);
+	line = line_reader(fd);
 	while (line != NULL)
 	{
 		line_count++;
@@ -93,7 +99,7 @@ static int	count_lines(char *filename)
 	return (line_count);
 }
 
-char	**read_map(char *filename)
+char	**map_reader(char *filename)
 {
 	int		fd;
 	char	**map;
@@ -101,20 +107,20 @@ char	**read_map(char *filename)
 	int		line_count;
 	int		i;
 
-	line_count = count_lines(filename);
+	line_count = line_counter(filename);
 	if (line_count <= 0)
 	{
 		write(0, "Error: The map is empty or failed to read.\n", 43);
 		return (NULL);
 	}
-	fd = open_map_file(filename);
+	fd = map_file_opener(filename);
 	if (fd == -1)
 		return (NULL);
 	map = malloc(sizeof(char *) * (line_count + 1));
 	if (!map)
 		return (NULL);
 	i = 0;
-	line = read_line(fd);
+	line = line_reader(fd);
 	while (line != NULL && i < line_count)
 		map[i++] = line;
 	map[i] = NULL;

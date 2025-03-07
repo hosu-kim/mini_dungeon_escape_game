@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 23:25:35 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/06 20:45:58 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/07 22:45:32 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_map_data
 }	t_map;
 
 // 함수 프로토타입
-char	**read_map(char *filename);
+char	**map_reader(char *filename);
 int		validate_map(char **map, t_map *map_info);
 void	init_game(t_game *game, char **map);
 void	load_images(t_game *game);
