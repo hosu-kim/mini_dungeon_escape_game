@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 21:46:19 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/06 22:55:54 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/07 14:34:04 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	open_map_file(char *filename)
 {
 	int	fd;
 
-	if (!check_file_exension(filename))
+	if (!check_file_extension(filename))
 	{
 		write(0, "Error: the file extension is not '.ber'.\n", 41);
 		return (-1);
@@ -69,10 +69,7 @@ static char	*read_line(int fd)
 		buffer[1] = '\0';
 	}
 	if (bytes_read <= 0 && line[0] == '\0')
-	{
-		free(line);
-		return (NULL);
-	}
+		return (free(line), NULL);
 	return (line);
 }
 
@@ -86,7 +83,8 @@ static int	count_lines(char *filename)
 	if (fd == -1)
 		return (-1);
 	line_count = 0;
-	while ((line = read_line(fd)) != NULL)
+	line = read_line(fd);
+	while (line != NULL)
 	{
 		line_count++;
 		free(line);
@@ -116,7 +114,8 @@ char	**read_map(char *filename)
 	if (!map)
 		return (NULL);
 	i = 0;
-	while ((line = read_line(fd)) != NULL && i < line_count)
+	line = read_line(fd);
+	while (line != NULL && i < line_count)
 		map[i++] = line;
 	map[i] = NULL;
 	close(fd);
