@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:39:47 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/08 17:20:05 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/08 18:33:23 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	key_press(int keycode, t_game *game)
 
 static int	is_valid_move(t_game *game, int new_x, int new_y)
 {
-	if (new_x < || new_x >= game->width || new_y < 0 || new_y >= game->height)
+	if (new_x < 0 || new_x >= game->width || new_y < 0 || new_y >= game->height)
 		return (0);
 	if (game->map[new_y][new_x] == '1')
 		return (0);

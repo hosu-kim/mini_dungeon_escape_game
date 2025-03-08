@@ -6,14 +6,14 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 23:25:35 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/08 17:15:58 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/08 18:32:25 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "mlx/mlx.h"
+# include "../mlx/mlx.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
