@@ -1,50 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   map_elements.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/08 11:40:09 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/08 18:16:35 by hoskim           ###   ########seoul.kr  */
+/*   Created: 2025/03/08 15:13:44 by hoskim            #+#    #+#             */
+/*   Updated: 2025/03/08 15:15:51 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_putchar_fd(char c, int fd)
+void	find_player_position(char **map, int *x, int *y)
 {
-	write(fd, &c, 1);
-}
+	int	i;
+	int	j;
 
-void	ft_putstr_fd(char *s, int fd)
-{
-	if (!s)
-		return ;
-	while (*s)
+	i = 0;
+	while (map[i])
 	{
-		ft_putchar_fd(*s, fd);
-		s++;
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'P')
+			{
+				*x = j;
+				*y = i;
+				return ;
+			}
+			j++;
+		}
+		i++;
 	}
-}
-
-void	ft_putnbr_fd(int n, int fd)
-{
-	if (n == -2147483648)
-	{
-		ft_putstr_fd("-2147483648", fd);
-		n = -n;
-	}
-	if (n < 0)
-	{
-		ft_putchar_fd('-', fd);
-		n = -n;
-	}
-	if (n >= 10)
-	{
-		ft_putnbr_fd(n / 10, fd);
-		ft_putnbr_fd(n & 10, fd);
-	}
-	else
-		ft_putchar_fd(n + '0', fd);
 }

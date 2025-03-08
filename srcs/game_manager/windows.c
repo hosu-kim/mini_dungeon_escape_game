@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   windows.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/08 12:48:07 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/08 12:53:57 by hoskim           ###   ########seoul.kr  */
+/*   Created: 2025/03/08 17:11:35 by hoskim            #+#    #+#             */
+/*   Updated: 2025/03/08 17:15:12 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int argc, char *argv[])
+int	close_window(t_game *game)
 {
-	t_game	game;
-	t_map	map_info;
-	char	**map;
+	end_game(game, 0);
+	return (0);
+}
 
-	if (argc != 2)
+int	check_exit(t_game *game, int x, int y)
+{
+	if (game->map[y][x] == 'E' \
+		&& game->collectibles_collected == game->collectibles)
 	{
-		ft_putstr_fd("Error: input only one file name.\n", 2);
+		end_game(game, 1);
 		return (1);
 	}
-	map = read_map(argv[1]);
-	if (!map)
-		return (1);
-	if (!validate_map(map, &map_info))
-	{
-		free_map(map);
-		return (1);
-	}
-	init_game(&game, map, &map_info);
-	mlx_hook(game.win, 2, 1L << 0, key_press, &game);
-	mlx_hook(game.win, 17, 0, close_window, &game);
-	render_map(&game);
-	mlx_loop(game.mlx);
 	return (0);
 }

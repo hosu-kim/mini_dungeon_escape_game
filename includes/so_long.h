@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 23:25:35 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/07 22:45:32 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/08 17:15:58 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@
 // 게임 데이터 구조체
 typedef struct s_game_data
 {
-	void	*mlx_instance;
-	void	*window_instance;
+	void	*mlx;
+	void	*win;
 	char	**map;
 	int		width;
 	int		height;
@@ -60,14 +60,52 @@ typedef struct s_map_data
 	int		exit_found;
 }	t_map;
 
-// 함수 프로토타입
-char	**map_reader(char *filename);
+/* function prototypes */
+// map.c
+char	**read_map(char *filename);
+int		open_map_file(char *filename);
+
+// map_reader.c
+char	*read_line(int fd);
+int		count_lines(char *filename);
+
+// map_utils.c
+int		check_retangular(char **map, t_map *map_info);
+int		check_walls(char **map, t_map *map_info);
+int		check_elements(char **map, t_map *map_info);
+void	find_player_position(char **map, int *x, int *y);
 int		validate_map(char **map, t_map *map_info);
-void	init_game(t_game *game, char **map);
+
+// map_elements.c
+void	find_player_position(char **map, int *x, int *y);
+
+// map_path.c
+int		check_valid_path(char **map, t_map *map_info);
+
+// game.c
+void	init_game(t_game *game, char **map, t_map *map_info);
+void	setup_game(t_game *game);
+
+// render.c
 void	load_images(t_game *game);
 void	render_map(t_game *game);
+void	render_moves(t_game *game);
+
+// events.c
 int		key_press(int keycode, t_game *game);
 void	move_player(t_game *game, int dx, int dy);
+
+// window.c
+int		close_window(t_game *game);
+int		check_exit(t_game *game, int x, int y);
+
+// utils.c
+void	ft_putstr_fd(char *s, int fd);
+char	*ft_strjoin(char *s1, char *s2);
+void	ft_putchar_fd(char c, int fd);
+void	ft_putnbr_fd(int n, int fd);
+
+// memory.c
 void	free_map(char **map);
 void	exit_game(t_game *game);
 

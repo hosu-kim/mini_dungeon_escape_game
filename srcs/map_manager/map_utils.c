@@ -6,14 +6,13 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:18:06 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/07 14:17:44 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/08 15:13:17 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/*Checks if a map is rectangular.*/
-int	check_rectangualr(char **map, t_map *map_info)
+int	check_retangular(char **map, t_map *map_info)
 {
 	int	i;
 	int	width;
@@ -31,7 +30,7 @@ int	check_rectangualr(char **map, t_map *map_info)
 			width++;
 		if (width != map_info->width)
 		{
-			write(0, "Error: The maps is not rectangular.\n", 36);
+			ft_putstr_fd("Error: the map is not rectangular.\n", 2);
 			return (0);
 		}
 		i++;
@@ -42,80 +41,71 @@ int	check_rectangualr(char **map, t_map *map_info)
 
 int	check_walls(char **map, t_map *map_info)
 {
-	int	height_index;
-	int	width_index;
+	int	i;
+	int	j;
 
-	height_index = 0;
-	while (height_index < map_info->height)
+	i = 0;
+	while (i < map_info->height)
 	{
-		width_index = 0;
-		while (width_index < map_info->width)
+		j = 0;
+		while (j < map_info->width)
 		{
-			if ((height_index == 0 || height_index == map_info->height - 1 || \
-					width_index == 0 || width_index == map_info->width - 1) \ 
-					&& map[height_index][width_index] != '1')
+			if ((i == 0 || i == map_info->height - 1 \
+				|| j == 0 || j == map_info->width - 1) && map[i][j] != '1')
 			{
-				write(0, "Error: The map is not surrounded by walls.\n", 43);
+				ft_putstr_fd("Error: The map is not surrounded by walls.\n", 2);
 				return (0);
 			}
-			width_index++;
+			j++;
 		}
-		height_index++;
+		i++;
+	}
+	return (1);
+}
+
+static int	check_valid_char(char c, t_map *map_info)
+{
+	if (c == 'C')
+		map_info->collectibles++;
+	else if (c == 'E')
+		map_info->exit++;
+	else if (c == 'P')
+		map_info->player++;
+	else if (c != '0' && c != '1')
+	{
+		ft_putstr_fd("Error: An invalid character exists in the map\n", 2);
+		return (0);
 	}
 	return (1);
 }
 
 int	check_elements(char **map, t_map *map_info)
 {
-	int	height_index;
-	int	width_index;
-	
-	map_info->collectibles = 0;
-	map_info->exit = 0;
-	map_info->player = 0;
-	height_index = -1;
-	while (++height_index < map_info->height)
-	{
-		width_index = -1;
-		while(++width_index < map_info->width)
-		{
-			if (map[height_index][width_index] == 'C')
-				map_info->collectibles++;
-			else if (map[height_index][width_index] == 'E')
-				map_info->exit++;
-			else if (map[height_index][width_index] == 'P')
-				map_info->player++;
-			else if (map[height_index][width_index] != '0' \
-						&& map[height_index][width_index] != '1')
-			{
-				write(0, "Error: The map contains invalid characters.\n", 44);
-			}
-		}
-	}
-	return (1);
-}
-
-void	find_player_positon(char **map, int *x, int *y)
-{
 	int	i;
 	int	j;
 
+	map_info->collectibles = 0;
+	map_info->exit = 0;
+	map_info->player = 0;
 	i = 0;
-	while (map[i])
+	while (i < map_info->height)
 	{
-		j= 0;
-		while (map[i][j])
+		j = 0;
+		while (j < map_info->width)
 		{
-			if (map[i][j] == 'P')
-			{
-				*x = j;
-				*y = i;
-				return ;
-			}
+			if (!check_valid_char(map[i][j], map_info))
+				return (0);
 			j++;
 		}
 		i++;
 	}
+	if (map_info->collectibles < 1 || map_info->exit != 1 \
+		|| map_info->player != 1)
+	{
+		ft_putstr_fd("Error: Map elements are incorrect.\n", 2);
+		return (0);
+	}
+	return (1);
 }
 
 int	validate_map(char **map, t_map *map_info)
@@ -130,5 +120,6 @@ int	validate_map(char **map, t_map *map_info)
 		return (0);
 	if (!check_valid_path(map, map_info))
 		return (0);
+	ft_putstr_fd("Map validation check completed: The map is valid.\n", 1);
 	return (1);
 }
