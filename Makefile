@@ -6,15 +6,15 @@
 #    By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/04 20:39:28 by hoskim            #+#    #+#              #
-#    Updated: 2025/03/08 18:31:29 by hoskim           ###   ########seoul.kr   #
+#    Updated: 2025/03/08 18:52:31 by hoskim           ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 CC = clang
-CFLAGS = -Wall -Wextra -Werror -g // -g: debugging
+CFLAGS = -Wall -Wextra -Werror -g
 
-MLX = -Lmlx -lmlx -lXext -lm
+MLX = -Lmlx -lmlx -lXext -lX11 -lm
 SRCS_DIR = srcs/
 MAIN_DIR = $(SRCS_DIR)main/
 MAP_MANAGER_DIR = $(SRCS_DIR)map_manager/
@@ -41,7 +41,7 @@ INCLUDES = -Iincludes -Imlx
 all: $(NAME)
 
 $(NAME): $(OBJS)
-		$(NAME) -C mlx
+		$(MAKE) -C mlx
 		$(CC) $(CFLAG) $(OBJS) $(MLX) -o $(NAME)
 
 %.o: %.c

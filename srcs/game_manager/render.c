@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:39:30 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/08 16:48:27 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/08 19:28:01 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	load_images(t_game *game)
 										&width, &height);
 	game->img_collectible = load_xpm_image(game->mlx, "assets/collectible.xpm", \
 											&width, &height);
-	game->img_exit = load_xpm_image(game->mlx, "assets/ecit.xpm", \
+	game->img_exit = load_xpm_image(game->mlx, "assets/exit.xpm", \
 									&width, &height);
 	game->img_floor = load_xpm_image(game->mlx, "assets/floor.xpm", \
 									&width, &height);

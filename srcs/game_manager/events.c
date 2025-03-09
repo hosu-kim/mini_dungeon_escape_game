@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:39:47 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/08 18:33:23 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/08 19:27:43 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,6 @@ void	move_player(t_game *game, int dx, int dy)
 	new_x = game->player_x + dx;
 	new_y = game->player_y + dy;
 	if (!is_valid_move(game, new_x, new_y))
-		return ;
-	game->map[game->player_y][game->player_x] = '0';
-	collect_item(game, new_x, new_y);
-	if (check_exit(game, new_x, new_y))
 		return ;
 	game->map[game->player_y][game->player_x] = '0';
 	collect_item(game, new_x, new_y);

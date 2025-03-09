@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:40:47 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/08 18:25:26 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/08 22:35:39 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ void	free_map(char **map)
 static void	free_images(t_game *game)
 {
 	if (game->img_player)
-		mlx_detroy_image(game->mlx, game->img_player);
+		mlx_destroy_image(game->mlx, game->img_player);
 	if (game->img_wall)
-		mlx_detroy_image(game->mlx, game->img_wall);
+		mlx_destroy_image(game->mlx, game->img_wall);
 	if (game->img_collectible)
-		mlx_detory_image(game->mlx, game->img_collectible);
+		mlx_destroy_image(game->mlx, game->img_collectible);
 	if (game->img_exit)
 		mlx_destroy_image(game->mlx, game->img_exit);
 	if (game->img_floor)
@@ -47,7 +47,7 @@ void	exit_game(t_game *game)
 		return ;
 	free_images(game);
 	if (game->win)
-		mlx_detroy_window(game->mlx, game->mlx);
+		mlx_destroy_window(game->mlx, game->win);
 	if (game->map)
 		free_map(game->map);
 	exit(0);

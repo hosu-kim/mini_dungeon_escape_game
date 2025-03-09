@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:36:50 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/08 14:14:24 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/08 18:48:16 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@ int	open_map_file(char *filename)
 		ft_putstr_fd("Error: The file extension is not '.ber'.\n", 2);
 		return (-1);
 	}
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+	{
+		ft_putstr_fd("Error: File open failure.\n", 2);
+		return (-1);
+	}
+	return (fd);
 }
 
 char	**read_map(char *filename)

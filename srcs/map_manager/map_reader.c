@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:38:27 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/08 14:29:20 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/08 19:30:45 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int	count_lines(char *filename)
 	{
 		line_count++;
 		free(line);
+		line = read_line(fd);
 	}
 	close(fd);
 	return (line_count);

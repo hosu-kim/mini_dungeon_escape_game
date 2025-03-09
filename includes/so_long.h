@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 23:25:35 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/08 18:32:25 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/08 20:07:41 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int		count_lines(char *filename);
 int		check_retangular(char **map, t_map *map_info);
 int		check_walls(char **map, t_map *map_info);
 int		check_elements(char **map, t_map *map_info);
-void	find_player_position(char **map, int *x, int *y);
 int		validate_map(char **map, t_map *map_info);
 
 // map_elements.c
@@ -84,7 +83,9 @@ int		check_valid_path(char **map, t_map *map_info);
 
 // game.c
 void	init_game(t_game *game, char **map, t_map *map_info);
+void	restart_game(t_game *game);
 void	setup_game(t_game *game);
+void	end_game(t_game *game, int success);
 
 // render.c
 void	load_images(t_game *game);
@@ -96,6 +97,7 @@ int		key_press(int keycode, t_game *game);
 void	move_player(t_game *game, int dx, int dy);
 
 // window.c
+int		create_window(t_game *game);
 int		close_window(t_game *game);
 int		check_exit(t_game *game, int x, int y);
 

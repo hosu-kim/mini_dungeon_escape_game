@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:39:09 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/08 15:35:55 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/08 22:39:16 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ void	init_game(t_game *game, char **map, t_map *map_info)
 	game->mlx = mlx_init();
 	if (!game->mlx)
 	{
-		ft_putstr_fd("Error: MLX initialization failed\n", 2);
-		free_map(map);
-		exit(1);
+		exit_game(game);
 	}
 	load_images(game);
 }
