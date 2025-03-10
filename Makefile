@@ -6,7 +6,7 @@
 #    By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/04 20:39:28 by hoskim            #+#    #+#              #
-#    Updated: 2025/03/09 21:33:17 by hoskim           ###   ########seoul.kr   #
+#    Updated: 2025/03/10 16:27:16 by hoskim           ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,8 +34,7 @@ SRCS = $(MAIN_DIR)so_long.c \
 		$(MAP_MANAGER_DIR)map.c \
 		$(UTILS_DIR)memory.c \
 		$(UTILS_DIR)string_utils.c \
-		$(UTILS_DIR)utils.c \
-		debug_map_elements.c
+		$(UTILS_DIR)utils.c
 
 OBJS = $(SRCS:.c=.o)
 INCLUDES = -Iincludes -Imlx
@@ -44,7 +43,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 		$(MAKE) -C mlx
-		$(CC) $(CFLAG) $(OBJS) $(MLX) -o $(NAME)
+		$(CC) $(CFLAGS) $(OBJS) $(MLX) -o $(NAME)
 
 %.o: %.c
 		$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@

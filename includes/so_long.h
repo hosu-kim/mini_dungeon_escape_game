@@ -38,6 +38,8 @@ typedef struct s_game_data
 	int		height;
 	int		player_x;
 	int		player_y;
+	int		exit_x;
+	int		exit_y;
 	int		collectibles;
 	int		collectibles_collected;
 	int		moves;
@@ -58,6 +60,10 @@ typedef struct s_map_data
 	int		player;
 	int		collectibles_found;
 	int		exit_found;
+	int		player_x;
+	int		player_y;
+	int		exit_x;
+	int		exit_y;
 }	t_map;
 
 /* function prototypes */
