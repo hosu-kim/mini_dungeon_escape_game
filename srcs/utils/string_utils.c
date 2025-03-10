@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   string_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: hoskim <hoskim@student.42prague.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 18:16:51 by hoskim            #+#    #+#             */
 /*   Updated: 2025/03/08 18:24:43 by hoskim           ###   ########seoul.kr  */
@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-static int	ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
 	int	len;
 

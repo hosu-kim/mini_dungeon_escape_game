@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: hoskim <hoskim@student.42prague.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:39:47 by hoskim            #+#    #+#             */
 /*   Updated: 2025/03/08 19:27:43 by hoskim           ###   ########seoul.kr  */
@@ -33,8 +33,8 @@ static int	is_valid_move(t_game *game, int new_x, int new_y)
 		return (0);
 	if (game->map[new_y][new_x] == '1')
 		return (0);
-	if (game->map[new_y][new_x] == 'E' \
-		&& game->collectibles_collected < game->collectibles)
+	if (game->map[new_y][new_x] == 'E' &&
+		game->collectibles_collected < game->collectibles)
 		return (0);
 	return (1);
 }

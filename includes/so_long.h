@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: hoskim <hoskim@student.42prague.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 23:25:35 by hoskim            #+#    #+#             */
 /*   Updated: 2025/03/08 20:07:41 by hoskim           ###   ########seoul.kr  */
@@ -61,6 +61,7 @@ typedef struct s_map_data
 }	t_map;
 
 /* function prototypes */
+
 // map.c
 char	**read_map(char *filename);
 int		open_map_file(char *filename);
@@ -80,6 +81,13 @@ void	find_player_position(char **map, int *x, int *y);
 
 // map_path.c
 int		check_valid_path(char **map, t_map *map_info);
+char	**copy_map(char **map, t_map *map_info);
+
+// map_path_helpers.c
+char	*allocate_copy_line(char *src, int width);
+void	count_elements(char **map_copy, t_map *map_info);
+void	flood_fill(char **map, int x, int y, t_map *map_info);
+int		check_path_result(char **map_copy, t_map *check_map);
 
 // game.c
 void	init_game(t_game *game, char **map, t_map *map_info);
@@ -103,9 +111,12 @@ int		check_exit(t_game *game, int x, int y);
 
 // utils.c
 void	ft_putstr_fd(char *s, int fd);
-char	*ft_strjoin(char *s1, char *s2);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putnbr_fd(int n, int fd);
+
+// string_utils.c
+char	*ft_strjoin(char *s1, char *s2);
+int		ft_strlen(char *str);
 
 // memory.c
 void	free_map(char **map);

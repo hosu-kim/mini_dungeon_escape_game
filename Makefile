@@ -6,7 +6,7 @@
 #    By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/04 20:39:28 by hoskim            #+#    #+#              #
-#    Updated: 2025/03/08 18:52:31 by hoskim           ###   ########seoul.kr   #
+#    Updated: 2025/03/09 21:33:17 by hoskim           ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,12 +28,14 @@ SRCS = $(MAIN_DIR)so_long.c \
 		$(GAME_MANAGER_DIR)windows.c \
 		$(MAP_MANAGER_DIR)map_elements.c \
 		$(MAP_MANAGER_DIR)map_path.c \
+		$(MAP_MANAGER_DIR)map_path_helpers.c \
 		$(MAP_MANAGER_DIR)map_reader.c \
 		$(MAP_MANAGER_DIR)map_utils.c \
 		$(MAP_MANAGER_DIR)map.c \
 		$(UTILS_DIR)memory.c \
 		$(UTILS_DIR)string_utils.c \
-		$(UTILS_DIR)utils.c
+		$(UTILS_DIR)utils.c \
+		debug_map_elements.c
 
 OBJS = $(SRCS:.c=.o)
 INCLUDES = -Iincludes -Imlx

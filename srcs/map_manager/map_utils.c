@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: hoskim <hoskim@student.42prague.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:18:06 by hoskim            #+#    #+#             */
 /*   Updated: 2025/03/08 15:13:17 by hoskim           ###   ########seoul.kr  */
@@ -50,8 +50,8 @@ int	check_walls(char **map, t_map *map_info)
 		j = 0;
 		while (j < map_info->width)
 		{
-			if ((i == 0 || i == map_info->height - 1 \
-				|| j == 0 || j == map_info->width - 1) && map[i][j] != '1')
+			if ((i == 0 || i == map_info->height - 1 ||
+				j == 0 || j == map_info->width - 1) && map[i][j] != '1')
 			{
 				ft_putstr_fd("Error: The map is not surrounded by walls.\n", 2);
 				return (0);
@@ -99,8 +99,7 @@ int	check_elements(char **map, t_map *map_info)
 		}
 		i++;
 	}
-	if (map_info->collectibles < 1 || map_info->exit != 1 \
-		|| map_info->player != 1)
+	if (map_info->collectibles < 1 || map_info->exit != 1 || map_info->player != 1)
 	{
 		ft_putstr_fd("Error: Map elements are incorrect.\n", 2);
 		return (0);

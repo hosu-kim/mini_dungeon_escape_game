@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: hoskim <hoskim@student.42prague.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:39:30 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/08 19:28:01 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/09 20:04:21 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,19 @@ void	load_images(t_game *game)
 
 	width = TILE_SIZE;
 	height = TILE_SIZE;
-	game->img_player = load_xpm_image(game->mlx, "assets/player.xpm", \
-										&width, &height);
-	game->img_wall = load_xpm_image(game->mlx, "assets/wall.xpm", \
-										&width, &height);
-	game->img_collectible = load_xpm_image(game->mlx, "assets/collectible.xpm", \
-											&width, &height);
-	game->img_exit = load_xpm_image(game->mlx, "assets/exit.xpm", \
-									&width, &height);
-	game->img_floor = load_xpm_image(game->mlx, "assets/floor.xpm", \
-									&width, &height);
-	if (!game->img_player || !game->img_wall || !game->img_collectible \
-		|| !game->img_exit || !game->img_collectible)
+	game->img_player = load_xpm_image(game->mlx, "assets/player.xpm", &width, &height);
+	game->img_wall = load_xpm_image(game->mlx, "assets/wall.xpm", &width, &height);
+	game->img_collectible = load_xpm_image(game->mlx, "assets/collectible.xpm", &width, &height);
+	game->img_exit = load_xpm_image(game->mlx, "assets/exit.xpm", &width, &height);
+	game->img_floor = load_xpm_image(game->mlx, "assets/floor.xpm", &width, &height);
+	if (!game->img_player || !game->img_wall || !game->img_collectible ||
+		!game->img_exit || !game->img_floor)
 		exit_game(game);
 }
 
 static void	draw_tile(t_game *game, void *img, int x, int y)
 {
-	mlx_put_image_to_window(game->mlx, game->win, img, \
-							x * TILE_SIZE, y * TILE_SIZE);
+	mlx_put_image_to_window(game->mlx, game->win, img, x * TILE_SIZE, y * TILE_SIZE);
 }
 
 void	render_map(t_game *game)
