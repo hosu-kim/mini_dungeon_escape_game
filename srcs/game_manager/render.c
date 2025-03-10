@@ -34,11 +34,16 @@ void	load_images(t_game *game)
 
 	width = TILE_SIZE;
 	height = TILE_SIZE;
-	game->img_player = load_xpm_image(game->mlx, "assets/player.xpm", &width, &height);
-	game->img_wall = load_xpm_image(game->mlx, "assets/wall.xpm", &width, &height);
-	game->img_collectible = load_xpm_image(game->mlx, "assets/collectible.xpm", &width, &height);
-	game->img_exit = load_xpm_image(game->mlx, "assets/exit.xpm", &width, &height);
-	game->img_floor = load_xpm_image(game->mlx, "assets/floor.xpm", &width, &height);
+	game->img_player = load_xpm_image(game->mlx, "assets/player.xpm", \
+										&width, &height);
+	game->img_wall = load_xpm_image(game->mlx, "assets/wall.xpm", \
+									&width, &height);
+	game->img_collectible = load_xpm_image(game->mlx, "assets/collectible.xpm", \
+											&width, &height);
+	game->img_exit = load_xpm_image(game->mlx, "assets/exit.xpm", \
+									&width, &height);
+	game->img_floor = load_xpm_image(game->mlx, "assets/floor.xpm", \
+									&width, &height);
 	if (!game->img_player || !game->img_wall || !game->img_collectible ||
 		!game->img_exit || !game->img_floor)
 		exit_game(game);
@@ -46,7 +51,8 @@ void	load_images(t_game *game)
 
 static void	draw_tile(t_game *game, void *img, int x, int y)
 {
-	mlx_put_image_to_window(game->mlx, game->win, img, x * TILE_SIZE, y * TILE_SIZE);
+	mlx_put_image_to_window(game->mlx, game->win, img, \
+							x * TILE_SIZE, y * TILE_SIZE);
 }
 
 void	render_map(t_game *game)
@@ -79,12 +85,11 @@ void	render_map(t_game *game)
 void	render_moves(t_game *game)
 {
 	char	*moves_str;
-	char	*tmp;
+	char	*num_str;
 
-	moves_str = ft_strjoin("Moves: ", "");
-	tmp = moves_str;
-	moves_str = ft_strjoin(moves_str, "0");
-	free(tmp);
+	num_str = ft_itoa(game->moves);
+	moves_str = ft_strjoin("Moves: ", num_str);
+	free(num_str);
 	mlx_string_put(game->mlx, game->win, 10, 20, 0xFFFFFF, moves_str);
 	free(moves_str);
 }

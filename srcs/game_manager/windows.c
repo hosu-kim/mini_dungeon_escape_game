@@ -19,7 +19,7 @@ int	create_window(t_game *game)
 
 	win_width = game->width * TILE_SIZE;
 	win_height = game->height * TILE_SIZE;
-	game->win = mlx_new_window(game->mlx, win_height, win_width, "so_long");
+	game->win = mlx_new_window(game->mlx, win_width, win_height, "so_long");
 	if (!game->win)
 	{
 		exit_game(game);

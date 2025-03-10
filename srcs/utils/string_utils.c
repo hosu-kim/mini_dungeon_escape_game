@@ -49,3 +49,28 @@ char	*ft_strjoin(char *s1, char *s2)
 	result[i + j] = '\0';
 	return (result);
 }
+
+char	*ft_itoa(int n)
+{
+	char	*str;
+	int		len;
+	int		temp;
+
+	len = 1;
+	temp = n;
+	while (temp / 10)
+	{
+		len++;
+		temp /= 10;
+	}
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (NULL);
+	str[len] = '\0';
+	while (len--)
+	{
+		str[len] = '0' + (n % 10);
+		n /= 10;
+	}
+	return (str);
+}

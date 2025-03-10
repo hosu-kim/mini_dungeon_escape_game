@@ -20,7 +20,6 @@
 # include <stdio.h>
 
 # define TILE_SIZE 32
-
 // 키 코드 정의
 # define KEY_ESC 65307
 # define KEY_W 119
@@ -123,6 +122,7 @@ void	ft_putnbr_fd(int n, int fd);
 // string_utils.c
 char	*ft_strjoin(char *s1, char *s2);
 int		ft_strlen(char *str);
+char	*ft_itoa(int n);
 
 // memory.c
 void	free_map(char **map);
