@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hoskim <hoskim@student.42prague.com>         +#+  +:+       +#+        */
+/*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:39:30 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/09 20:04:21 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/23 22:30:36 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	load_images(t_game *game)
 									&width, &height);
 	game->img_floor = load_xpm_image(game->mlx, "assets/floor.xpm", \
 									&width, &height);
-	if (!game->img_player || !game->img_wall || !game->img_collectible ||
-		!game->img_exit || !game->img_floor)
+	if (!game->img_player || !game->img_wall || !game->img_collectible
+		|| !game->img_exit || !game->img_floor)
 		exit_game(game);
 }
 
