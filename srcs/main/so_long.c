@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 22:22:30 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/10 17:06:09 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/24 10:06:55 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 	t_map	map_info;
 	char	**map;
 
-	if (argc != 2)
+	if (argc != 2) // checks the num of coomand line arguments.
 	{
 		ft_putstr_fd("Usage: ./so_long <map_file>\n", 2);
 		return (1);
