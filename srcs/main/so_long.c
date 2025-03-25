@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 22:22:30 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/24 16:33:49 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/25 14:01:32 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Usage: ./so_long <map_file>\n", 2);
 		return (1);
 	}
-	map = read_map(argv[1]);
+	map = read_map(argv[1]); // 문자열 배열 형식으로 맵 저장
 	if (!map)
 	{
-		ft_putstr_fd("Error: Failed to read map.\n", 2);
+		ft_putstr_fd("Error: Failed to read map.\n", 2); // 1. retangular 2. walls 3. elements 4. valid path -> map_utils.c
 		return (1);
 	}
-	if (!validate_map(map, &map_info))
+	if (!validate_map(map, &map_info)) // map_utils.c
 	{
 		free_map(map);
 		map = NULL;
