@@ -1,55 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_path_helpers.c                                 :+:      :+:    :+:   */
+/*   map_path_validator_helpers.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:38:46 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/23 22:29:42 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/25 18:46:32 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	*allocate_copy_line(char *src, int width)
+char	*copy_line(char *line, int width)
 {
-	char	*line;
-	int		j;
+	char	*copy_line;
+	int		width_i;
 
-	line = malloc(sizeof(char) * (width + 1));
-	if (!line)
+	copy_line = malloc(sizeof(char) * (width + 1));
+	if (!copy_line)
 		return (NULL);
-	j = 0;
-	while (j < width)
+	width_i = 0;
+	while (width_i < width)
 	{
-		line[j] = src[j];
-		j++;
+		copy_line[width_i] = line[width_i];
+		width_i++;
 	}
-	line[j] = '\0';
-	return (line);
+	copy_line[width_i] = '\0';
+	return (copy_line);
 }
 
-void	count_elements(char **map_copy, t_map *map_info)
+void	counts_elements(char **map_copy, t_map *map_info)
 {
-	int	i;
-	int	j;
+	int	height;
+	int	width;
 
 	map_info->collectibles = 0;
 	map_info->exit = 0;
-	i = 0;
-	while (map_copy[i])
+	height = 0;
+	while (map_copy[height])
 	{
-		j = 0;
-		while (map_copy[i][j])
+		width = 0;
+		while (map_copy[height][width])
 		{
-			if (map_copy[i][j] == 'C')
+			if (map_copy[height][width] == 'C')
 				map_info->collectibles++;
-			else if (map_copy[i][j] == 'E')
+			else if (map_copy[height][width] == 'E')
 				map_info->exit++;
-			j++;
+			width++;
 		}
-		i++;
+		height++;
 	}
 }
 

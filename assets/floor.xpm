@@ -3,7 +3,7 @@ static char *floor[] = {
 /* columns rows colors chars-per-pixel */
 "32 32 2 1",
 "  c None",
-". c #F5F5DC",
+". c #000000",
 /* pixels */
 "................................",
 "................................",

@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 15:13:44 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/23 22:29:59 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/25 18:47:58 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 void	find_player_position(char **map, int *x, int *y)
 {
-	int	i;
-	int	j;
+	int	height;
+	int	width;
 
-	i = 0;
-	while (map[i])
+	height = 0;
+	while (map[height])
 	{
-		j = 0;
-		while (map[i][j])
+		width = 0;
+		while (map[height][width])
 		{
-			if (map[i][j] == 'P')
+			if (map[height][width] == 'P')
 			{
-				*x = j;
-				*y = i;
+				*x = width;
+				*y = height;
 				return ;
 			}
-			j++;
+			width++;
 		}
-		i++;
+		height++;
 	}
 }

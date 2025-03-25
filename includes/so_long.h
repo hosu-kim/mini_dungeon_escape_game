@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 23:25:35 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/25 14:14:24 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/25 18:45:24 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ int		check_valid_path(char **map, t_map *map_info);
 char	**copy_map(char **map, t_map *map_info);
 
 // map_path_helpers.c
-char	*allocate_copy_line(char *src, int width);
-void	count_elements(char **map_copy, t_map *map_info);
+char	*copy_line(char *src, int width);
+void	counts_elements(char **map_copy, t_map *map_info);
 void	flood_fill(char **map, int x, int y, t_map *map_info);
 int		check_path_result(char **map_copy, t_map *check_map);
 
