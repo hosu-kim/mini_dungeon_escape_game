@@ -6,12 +6,16 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:38:46 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/25 18:46:32 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/26 20:40:28 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/// @brief 
+/// @param line 
+/// @param width 
+/// @return 
 char	*copy_line(char *line, int width)
 {
 	char	*copy_line;
