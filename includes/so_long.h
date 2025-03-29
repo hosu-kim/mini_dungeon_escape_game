@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 23:25:35 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/25 18:45:24 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/29 21:31:42 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,18 +68,18 @@ typedef struct s_map_data
 /* function prototypes */
 
 // map.c
-char	**read_map(char *filename);
-int		open_map_file(char *filename);
+char	**get_map_data(char *filename);
+int		read_map_file(char *filename);
 
 // map_reader.c
-char	*read_line(int fd);
-int		count_lines(char *filename);
+char	*get_one_line_from_fd(int fd);
+int		count_map_lines(char *filename);
 
 // map_utils.c
-int		check_retangular(char **map, t_map *map_info);
-int		check_walls(char **map, t_map *map_info);
-int		check_elements(char **map, t_map *map_info);
-int		validate_map(char **map, t_map *map_info);
+int		if_rectangular(char **map, t_map *map_info);
+int		if_walls_enclose(char **map, t_map *map_info);
+int		if_valid_elements(char **map, t_map *map_info);
+int		validate_map_data(char **map, t_map *map_info);
 
 // map_elements.c
 void	find_player_position(char **map, int *x, int *y);

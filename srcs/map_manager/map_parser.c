@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_reader.c                                       :+:      :+:    :+:   */
+/*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:38:27 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/23 22:29:30 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/29 21:13:37 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 static int	append_char_to_line(char **line, char buffer[2])
 {
-	char	*temp;
+	char	*ptr_to_free_line_later;
 
-	temp = *line;
+	ptr_to_free_line_later = *line;
 	*line = ft_strjoin(*line, buffer);
-	free(temp);
+	free(ptr_to_free_line_later);
 	if (!*line)
 		return (0);
 	return (1);
 }
 
-char	*read_line(int fd)
+char	*get_one_line_from_fd(int fd)
 {
 	char	buffer[2];
 	char	*line;
@@ -50,23 +50,27 @@ char	*read_line(int fd)
 	}
 	return (line);
 }
-
-int	count_lines(char *filename)
+/**
+ * @note
+ * - File descriptors keep their position:
+ *   each read continues where previous read ended
+ */
+int	count_map_lines(char *filename)
 {
 	int		fd;
 	char	*line;
 	int		line_count;
 
-	fd = open_map_file(filename);
+	fd = read_map_file(filename);
 	if (fd == -1)
 		return (-1);
 	line_count = 0;
-	line = read_line(fd);
+	line = get_one_line_from_fd(fd);
 	while (line != NULL)
 	{
 		line_count++;
 		free(line);
-		line = read_line(fd);
+		line = get_one_line_from_fd(fd);
 	}
 	close(fd);
 	return (line_count);

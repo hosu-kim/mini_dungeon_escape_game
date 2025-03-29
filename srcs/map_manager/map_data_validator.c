@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_utils.c                                        :+:      :+:    :+:   */
+/*   map_data_validator.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:18:06 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/25 17:41:27 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/29 21:31:42 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
  * 5. and in the next line, it saves the width in map_info
  * 6. second while,.height
  * */
-int	check_retangular(char **map, t_map *map_info)
+int	if_rectangular(char **map, t_map *map_info)
 {
 	int	height;
 	int	width;
@@ -52,7 +52,7 @@ int	check_retangular(char **map, t_map *map_info)
  * 그 중에서 1이 아닐 때
  * 행을 먼저 정하고 열을 순회한다.
  */
-int	check_walls(char **map, t_map *map_info)
+int	if_walls_enclose(char **map, t_map *map_info)
 {
 	int	row_count;
 	int	column_count;
@@ -80,7 +80,7 @@ int	check_walls(char **map, t_map *map_info)
 /**
  * 1. provided char is a desired char, saves it in map_info if not error
  */
-static int	check_valid_char(char c, t_map *map_info)
+static int	if_a_valid_element(char c, t_map *map_info)
 {
 	if (c == 'C')
 		map_info->collectibles++;
@@ -96,7 +96,7 @@ static int	check_valid_char(char c, t_map *map_info)
 	return (1);
 }
 
-int	check_elements(char **map, t_map *map_info)
+int	if_valid_elements(char **map, t_map *map_info)
 {
 	int	row_i;
 	int	column_i;
@@ -110,7 +110,7 @@ int	check_elements(char **map, t_map *map_info)
 		column_i = 0;
 		while (column_i < map_info->width)
 		{
-			if (!check_valid_char(map[row_i][column_i], map_info))
+			if (!if_a_valid_element(map[row_i][column_i], map_info))
 				return (0);
 			column_i++;
 		}
@@ -128,15 +128,15 @@ int	check_elements(char **map, t_map *map_info)
 /**
  * check_valid_path()->map_path.c
  */
-int	validate_map(char **map, t_map *map_info)
+int	validate_map_data(char **map, t_map *map_info)
 {
 	if (!map)
 		return (0);
-	if (!check_retangular(map, map_info))
+	if (!if_rectangular(map, map_info))
 		return (0);
-	if (!check_walls(map, map_info))
+	if (!if_walls_enclose(map, map_info))
 		return (0);
-	if (!check_elements(map, map_info))
+	if (!if_valid_elements(map, map_info))
 		return (0);
 	if (!check_valid_path(map, map_info))
 		return (0);
