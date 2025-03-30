@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 23:25:35 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/29 21:31:42 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/30 21:40:00 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ typedef struct s_map_data
 	int		collectibles;
 	int		exit;
 	int		player;
-	int		collectibles_found;
-	int		exit_found;
 	int		player_x;
 	int		player_y;
 	int		exit_x;
@@ -67,9 +65,10 @@ typedef struct s_map_data
 
 /* function prototypes */
 
-// map.c
+// map_data_reader.c
 char	**get_map_data(char *filename);
 int		read_map_file(char *filename);
+char	**get_map_data(char *filename);
 
 // map_reader.c
 char	*get_one_line_from_fd(int fd);
@@ -124,8 +123,8 @@ char	*ft_strjoin(char *s1, char *s2);
 int		ft_strlen(char *str);
 char	*ft_itoa(int n);
 
-// memory.c
-void	free_map(char **map);
+// memory_manager.c
+void	free_map_storage(char **map);
 void	exit_game(t_game *game);
 
 #endif

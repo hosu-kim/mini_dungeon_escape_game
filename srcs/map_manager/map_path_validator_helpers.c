@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:38:46 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/26 20:40:28 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/30 18:56:34 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ int	check_path_result(char **map_copy, t_map *check_map)
 	if (check_map->collectibles > 0 || check_map->exit > 0)
 	{
 		ft_putstr_fd("Error: Not all collectibles or exit are reachable.\n", 2);
-		free_map(map_copy);
+		free_map_storage(map_copy);
 		return (0);
 	}
-	free_map(map_copy);
+	free_map_storage(map_copy);
 	return (1);
 }
