@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:18:06 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/30 21:36:43 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/03/30 21:56:12 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,17 @@ int	if_walls_enclose(char **map, t_map *map_info)
 	int	column_count;
 
 	row_count = 1;
-	while (row_count < map_info->height)
+	while (row_count <= map_info->height)
 	{
 		column_count = 1;
-		while (column_count < map_info->width)
+		while (column_count <= map_info->width)
 		{
-			if (((row_count == 1 || row_count == map_info->height)
-					|| (column_count == 1 || column_count == map_info->width))
+			if ((row_count == 1 || row_count == map_info->height)
+					|| (column_count == 1 || column_count == map_info->width)
 				&& (map[row_count][column_count] != '1'))
 			{
-				ft_putstr_fd("Error: The walls don't inclose the map.\n", 2);
+				ft_putstr_fd("Error: The walls don't enclose the map.\
+->if_walls_enclose()\n", 2);
 				return (0);
 			}
 			column_count++;

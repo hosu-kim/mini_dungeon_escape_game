@@ -6,7 +6,7 @@
 #    By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/04 20:39:28 by hoskim            #+#    #+#              #
-#    Updated: 2025/03/30 21:37:13 by hoskim           ###   ########seoul.kr   #
+#    Updated: 2025/03/30 21:48:59 by hoskim           ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,9 +27,9 @@ SRCS = $(MAIN_DIR)so_long.c \
 		$(GAME_MANAGER_DIR)render.c \
 		$(GAME_MANAGER_DIR)windows.c \
 		$(MAP_MANAGER_DIR)map_elements.c \
+		$(MAP_MANAGER_DIR)map_data_reader.c \
 		$(MAP_MANAGER_DIR)map_path_validator.c \
 		$(MAP_MANAGER_DIR)map_path_validator_helpers.c \
-		$(MAP_MANAGER_DIR)map_parser.c \
 		$(MAP_MANAGER_DIR)map_data_validator.c \
 		$(MAP_MANAGER_DIR)map_parser.c \
 		$(UTILS_DIR)memory_manager.c \

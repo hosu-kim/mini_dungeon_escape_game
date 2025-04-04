@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_put_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:40:09 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/23 22:24:31 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/04 20:24:58 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,13 @@ void	ft_putstr_fd(char *s, int fd)
 		s++;
 	}
 }
-
+/**
+ * @brief prints an integer after converting to characters.
+ * @details
+ * - Codeflow
+ *     1. if(1): Detects INT_MIN
+ *     2. if(2): Determines negative sign and print it.
+ */
 void	ft_putnbr_fd(int n, int fd)
 {
 	if (n == -2147483648)
