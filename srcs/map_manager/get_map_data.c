@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_reader.c                                       :+:      :+:    :+:   */
+/*   get_map_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:36:50 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/29 21:17:47 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/05 15:16:04 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /**
  * @brief checks if extension is ".ber"
  * @details 
- * - Used in check_file_extension()
+ * - Used: read_map_file()->get_map_data()
  * - Codeflow
  * 	1. Counts length of file name
  * 	2. If(1st): length < 5 -> return (0)
@@ -23,7 +23,7 @@
  * 	4. If file extension == ".ber" -> return (1)
  * 
  * @param filename Filename to check
- * @return 1 if extension == ".ber", 0 if not
+ * @return if extension is ".ber", 1, if not 0.
  */
 static int	check_file_extension(char *filename)
 {

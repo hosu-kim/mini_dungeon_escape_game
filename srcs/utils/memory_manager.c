@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 22:25:04 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/30 18:56:34 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/05 11:40:23 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * @brief Frees all memory allocated for a 2D character array
  *        First frees each string, then frees the pointer array itself.
  */
-void	free_map_storage(char **map_storage)
+void	free_map_data_storage(char **map_storage)
 {
 	int	i;
 
@@ -61,7 +61,7 @@ void	exit_game(t_game *game)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->map)
 	{
-		free_map_storage(game->map);
+		free_map_data_storage(game->map);
 		game->map = NULL;
 	}
 	exit(0);

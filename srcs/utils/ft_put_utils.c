@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:40:09 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/04 20:24:58 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/05 14:14:49 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@ void	ft_putchar_fd(char c, int fd)
 	write(fd, &c, 1);
 }
 
+/**
+ * @details Prints the provided string to the file descriptor.
+ */
 void	ft_putstr_fd(char *s, int fd)
 {
 	if (!s)
@@ -28,7 +31,7 @@ void	ft_putstr_fd(char *s, int fd)
 	}
 }
 /**
- * @brief prints an integer after converting to characters.
+ * @brief Prints an integer after converting to characters.
  * @details
  * - Codeflow
  *     1. if(1): Detects INT_MIN

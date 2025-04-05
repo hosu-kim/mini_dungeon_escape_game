@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 22:22:30 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/30 21:34:01 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/05 14:11:49 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(int argc, char **argv)
 	}
 	if (!validate_map_data(map_data_storage, &map_info)) // map_data_validator.c
 	{
-		free_map_storage(map_data_storage);
+		free_map_data_storage(map_data_storage);
 		map_data_storage = NULL;
 		return (1);
 	}
@@ -45,14 +45,14 @@ int	main(int argc, char **argv)
 	game.mlx = mlx_init();
 	if (!game.mlx)
 	{
-		free_map_storage(game.map);
+		free_map_data_storage(game.map);
 		game.map = NULL;
 		ft_putstr_fd("Error: mlx initialization failed.\n", 2);
 		return (1);
 	}
 	if (!create_window(&game))
 	{
-		free_map_storage(game.map);
+		free_map_data_storage(game.map);
 		game.map = NULL;
 		ft_putstr_fd("Error: Window creation failed.\n", 2);
 		return (1);
@@ -64,3 +64,15 @@ int	main(int argc, char **argv)
 	mlx_loop(game.mlx);
 	return (0);
 }
+
+/** TODO: Understands the code flow
+ *  1. ft_putstr_fd(): OK
+ *  2. get_map_data()
+ *  3. validate_map_data()
+ *  4. free_map_data_storage()
+ *  5. ft_putstr_fd()
+ *  6. create_window()
+ *  7. init_game()
+ *  8. render_map()
+ *  9. /mlx
+ */

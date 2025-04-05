@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 23:25:35 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/30 21:45:11 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/05 14:08:39 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,6 @@ int		check_exit(t_game *game, int x, int y);
 
 // utils.c
 void	ft_putstr_fd(char *s, int fd);
-void	ft_putchar_fd(char c, int fd);
 void	ft_putnbr_fd(int n, int fd);
 
 // string_utils.c
@@ -124,7 +123,7 @@ int		ft_strlen(char *str);
 char	*ft_itoa(int n);
 
 // memory_manager.c
-void	free_map_storage(char **map);
+void	free_map_data_storage(char **map);
 void	exit_game(t_game *game);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:38:46 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/30 18:56:34 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/05 11:40:23 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	**copy_map(char **map, t_map *map_info)
 		copy_map[height_i] = copy_line(map[height_i], map_info->width);
 		if (!copy_map[height_i])
 		{
-			free_map_storage(copy_map);
+			free_map_data_storage(copy_map);
 			return (NULL);
 		}
 		height_i++;
@@ -57,7 +57,7 @@ int	check_valid_path(char **map, t_map *map_info)
 	if (player_x == -1 || player_y == -1)
 	{
 		ft_putstr_fd("Error: Player position not found.\n", 2);
-		free_map_storage(map_copy);
+		free_map_data_storage(map_copy);
 		return (0);
 	}
 	flood_fill(map_copy, player_x, player_y, &copy_map_info);
