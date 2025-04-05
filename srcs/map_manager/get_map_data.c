@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:36:50 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/05 15:18:18 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/05 19:05:21 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,21 @@ static int	check_file_extension(char *filename)
 		len++;
 	if (len <= 4)
 		return (0);
-	else if (filename[len - 1] != 'r' || filename[len - 2] != 'e' \
-		|| filename[len - 3] != 'b' || filename[len - 4] != '.')
+	else if (filename[len - 4] != '.' || filename[len - 3] != 'b'
+		|| filename[len - 2] != 'e' || filename[len - 1] != 'r')
 		return (0);
 	return (1);
 }
+
 /**
- * @breif opens map file with open()
- * @ details
- * - Uses check_file_extension()
+ * @brief Opens map file
+ * @details
  * - Codeflow
- * 	1. Checks if file extension is ".ber" -> false
- * 		-> return (-1) for sending error in fd
- * 	2. Open file: O_RDONLY(open_ReaDONLY) -> false -> return (-1)
- * 	3. Return fd
+ *   1. check_file_extention()
+ *    (1) false: return -1 -> sending error as fd
+ *   2. Open file: open(pathname, flags), O_RDONLY(Open for reading only) 
+ *                 -> false: return -1
+ *   3. Return fd
  * 
  * @param filename File to open
  * @return File descriptor
@@ -71,10 +72,10 @@ int	read_map_file(char *filename)
 }
 
 /**
- * @breif 
+ * @brief
  * @details
  * - Codeflow
- *  1. counts how many lines in map (.ber)
+ *  1. count_map_lines(): counts how many lines in map (.ber)
  *  2. read map file
  *  3. allocates mem to map_data with line counts
  *  4. while(1st): appends lines to map_data
@@ -99,12 +100,12 @@ char	**get_map_data(char *filename)
 	map_data = malloc(sizeof(char *) * (line_count + 1));
 	if (!map_data)
 		return (NULL);
+	line = get_line_from_fd(fd);
 	i = 0;
-	line = get_one_line_from_fd(fd);
 	while (line != NULL && i < line_count)
 	{
 		map_data[i++] = line;
-		line = get_one_line_from_fd(fd);
+		line = get_line_from_fd(fd);
 	}
 	map_data[i] = NULL;
 	close(fd);

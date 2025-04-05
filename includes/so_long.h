@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 23:25:35 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/05 14:08:39 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/05 19:05:21 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int		read_map_file(char *filename);
 char	**get_map_data(char *filename);
 
 // map_reader.c
-char	*get_one_line_from_fd(int fd);
+char	*get_line_from_fd(int fd);
 int		count_map_lines(char *filename);
 
 // map_utils.c
@@ -119,7 +119,6 @@ void	ft_putnbr_fd(int n, int fd);
 
 // string_utils.c
 char	*ft_strjoin(char *s1, char *s2);
-int		ft_strlen(char *str);
 char	*ft_itoa(int n);
 
 // memory_manager.c

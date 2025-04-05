@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   string_utils.c                                     :+:      :+:    :+:   */
+/*   ft_str_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 18:16:51 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/23 22:24:43 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/05 17:39:41 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Measures the length of string.
+ * @note Only used for 'ft_strjoin()' in the current file
+ * @return The length of the string (int)
+ */
 int	ft_strlen(char *str)
 {
-	int	len;
+	int	len_of_str;
 
-	len = 0;
-	while (str[len])
-		len++;
-	return (len);
+	len_of_str = 0;
+	while (str[len_of_str])
+		len_of_str++;
+	return (len_of_str);
 }
 
+/**
+ * @brief Combines s1 and s2 in a string
+ */
 char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*result;
@@ -50,6 +58,9 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (result);
 }
 
+/**
+ * @brief Converts an integer to a string
+ */
 char	*ft_itoa(int n)
 {
 	char	*str;

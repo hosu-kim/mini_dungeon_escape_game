@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 22:22:30 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/05 14:11:49 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/05 16:09:21 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int	main(int argc, char **argv)
 /** TODO: Understands the code flow
  *  1. ft_putstr_fd(): OK
  *  2. get_map_data()
+ *     (1) int	count_map_lines()
  *  3. validate_map_data()
  *  4. free_map_data_storage()
  *  5. ft_putstr_fd()
