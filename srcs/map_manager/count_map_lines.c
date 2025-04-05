@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:38:27 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/05 19:33:41 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/05 20:34:14 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	*get_line_from_fd(int fd)
 }
 
 /**
- * 
+ *  @brief Counts the number of lines in a map file.
  */
 int	count_map_lines(char *filename)
 {
