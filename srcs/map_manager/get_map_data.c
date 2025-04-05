@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:36:50 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/05 15:16:04 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/05 15:18:18 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
  * @details 
  * - Used: read_map_file()->get_map_data()
  * - Codeflow
- * 	1. Counts length of file name
- * 	2. If(1st): length < 5 -> return (0)
- * 	3. Elseif(1st): last 4 characters != ".ber" -> return (0)
- * 	4. If file extension == ".ber" -> return (1)
+ * 	1. while: Counts length of file name
+ * 	2. if(1): length < 5 -> return (0)
+ * 	3. else if(1): last 4 characters != ".ber" -> return (0)
+ * 	4. If file extension is ".ber" -> return 1
  * 
  * @param filename Filename to check
  * @return if extension is ".ber", 1, if not 0.
@@ -32,7 +32,7 @@ static int	check_file_extension(char *filename)
 	len = 0;
 	while (filename[len])
 		len++;
-	if (len < 5)
+	if (len <= 4)
 		return (0);
 	else if (filename[len - 1] != 'r' || filename[len - 2] != 'e' \
 		|| filename[len - 3] != 'b' || filename[len - 4] != '.')
