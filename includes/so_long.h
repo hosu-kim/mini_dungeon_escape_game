@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 23:25:35 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/05 19:05:21 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/06 20:45:09 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,12 @@ int		validate_map_data(char **map, t_map *map_info);
 void	find_player_position(char **map, int *x, int *y);
 
 // map_path.c
-int		check_valid_path(char **map, t_map *map_info);
+int		if_valid_path(char **map, t_map *map_info);
 char	**copy_map(char **map, t_map *map_info);
 
 // map_path_helpers.c
 char	*copy_line(char *src, int width);
-void	counts_elements(char **map_copy, t_map *map_info);
+void	store_elements_into_t_map(char **map_copy, t_map *map_info);
 void	flood_fill(char **map, int x, int y, t_map *map_info);
 int		check_path_result(char **map_copy, t_map *check_map);
 

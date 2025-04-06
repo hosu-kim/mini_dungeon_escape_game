@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 22:22:30 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/05 20:59:26 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/06 20:51:55 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,16 @@ int	main(int argc, char **argv)
  *  2. get_map_data(): OK
  *     (1) count_map_lines(): OK
  *  3. validate_map_data(): ...
+ *     (a) if_rectangualr(): OK
+ *     (b) if_walls_enclose(): OK
+ *     (c) if_a_valid_element_and_store: OK
+ *     (d) if_valid_elements(): OK
+ *     -> if_valid_path()
+ *            (a) copy_line(): OK
+ *            (b) fill_map_structure(): OK
+ *            (c) flood_fill()
+ *            (d) check_path_result()
+ *            (e) copy_map()
  *  4. free_map_data_storage()
  *  5. ft_putstr_fd()
  *  6. create_window()

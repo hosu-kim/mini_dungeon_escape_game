@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:39:09 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/25 14:38:24 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/06 17:38:51 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	end_game(t_game *game, int success)
 {
 	if (success)
 		ft_putstr_fd("\nGame clear! You got all \
-					collectibles and escaped.\n", 1);
+collectibles and escaped.\n", 1);
 	else
 		ft_putstr_fd("\nGame ended.\n", 1);
 	ft_putstr_fd("Whole moves: ", 1);
