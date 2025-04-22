@@ -39,7 +39,7 @@ int	if_rectangular(char **map, t_map_info *map_info)
 			width++;
 		if (width != map_info->width)
 		{
-			ft_putstr_fd("Error: the map is not rectangular.\n", 2);
+			ft_putstr_fd("Error", 2);
 			return (0);
 		}
 		height++;

@@ -30,7 +30,7 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		ft_putstr_fd("Usage: ./so_long <map_file_path>\n", 2);
+		ft_putstr_fd("Error\nWrong number of arguments\n", 1);
 		return (1);
 	}
 	map_data_storage = get_map_data(argv[1]);

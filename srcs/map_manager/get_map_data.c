@@ -59,13 +59,15 @@ int	read_map_file(char *filename)
 
 	if (!check_file_extension(filename))
 	{
-		ft_putstr_fd("Error: The file extension is not '.ber'.\n", 2);
+		ft_putstr_fd("Error", 2);
+		ft_putstr_fd("Bad extension\n", 2);
 		return (-1);
 	}
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_putstr_fd("Error: File open failure.\n", 2);
+		ft_putstr_fd("Error", 2);
+		ft_putstr_fd("Failed to open file\n", 2);
 		return (-1);
 	}
 	return (fd);
@@ -91,7 +93,7 @@ char	**get_map_data(char *filepath)
 	line_count = count_lines_in_map_file(filepath);
 	if (line_count <= 0)
 	{
-		ft_putstr_fd("Error: The map is empty or cannot be read.\n", 2);
+		ft_putstr_fd("Error", 2);
 		return (NULL);
 	}
 	fd = read_map_file(filepath);

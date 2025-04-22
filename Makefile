@@ -22,10 +22,10 @@ GAME_MANAGER_DIR = $(SRCS_DIR)game_manager/
 UTILS_DIR = $(SRCS_DIR)utils/
 
 SRCS = $(MAIN_DIR)so_long.c \
-		$(GAME_MANAGER_DIR)events.c \
-		$(GAME_MANAGER_DIR)game.c \
-		$(GAME_MANAGER_DIR)render.c \
-		$(GAME_MANAGER_DIR)window_manager.c \
+		$(GAME_MANAGER_DIR)event_setup.c \
+		$(GAME_MANAGER_DIR)game_setup.c \
+		$(GAME_MANAGER_DIR)rendering_setup.c \
+		$(GAME_MANAGER_DIR)window_setup.c \
 		$(MAP_MANAGER_DIR)map_elements.c \
 		$(MAP_MANAGER_DIR)get_map_data.c \
 		$(MAP_MANAGER_DIR)if_valid_path.c \
