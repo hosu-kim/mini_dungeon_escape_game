@@ -74,40 +74,40 @@ int	read_map_file(char *filename)
 /**
  * @brief
  * @details
- * - Codeflow
+ * ============================== Codeflow ==============================
  *  1. count_map_lines(): counts how many lines in map (.ber)
- *  2. read map file
- *  3. allocates mem to map_data with line counts
+ *  2. read map file(): Returns a file descriptor.
+ *  3. Allocates memomry to map_data.
  *  4. while(1st): appends lines to map_data
  */
-char	**get_map_data(char *filename)
+char	**get_map_data(char *filepath)
 {
 	int		fd;
-	char	**map_data;
+	char	**map_data_storage;
 	char	*line;
 	int		line_count;
 	int		i;
 
-	line_count = count_map_lines(filename);
+	line_count = count_lines_in_map_file(filepath);
 	if (line_count <= 0)
 	{
 		ft_putstr_fd("Error: The map is empty or cannot be read.\n", 2);
 		return (NULL);
 	}
-	fd = read_map_file(filename);
+	fd = read_map_file(filepath);
 	if (fd == -1)
 		return (NULL);
-	map_data = malloc(sizeof(char *) * (line_count + 1));
-	if (!map_data)
+	map_data_storage = malloc(sizeof(char *) * (line_count + 1));
+	if (!map_data_storage)
 		return (NULL);
-	line = get_line_from_fd(fd);
+	line = get_a_line_from_fd(fd);
 	i = 0;
 	while (line != NULL && i < line_count)
 	{
-		map_data[i++] = line;
-		line = get_line_from_fd(fd);
+		map_data_storage[i++] = line;
+		line = get_a_line_from_fd(fd);
 	}
-	map_data[i] = NULL;
+	map_data_storage[i] = NULL;
 	close(fd);
-	return (map_data);
+	return (map_data_storage);
 }

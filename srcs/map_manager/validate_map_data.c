@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:18:06 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/06 19:57:05 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/21 20:32:53 by hoskim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  *                    as the first line.
  * 3. Stores height into map_info.
  * */
-int	if_rectangular(char **map, t_map *map_info)
+int	if_rectangular(char **map, t_map_info *map_info)
 {
 	int	height;
 	int	width;
@@ -59,7 +59,7 @@ int	if_rectangular(char **map, t_map *map_info)
  *             and it doesn't have 1 -> return 0
  *     2. If walls enclose -> Return 1
  */
-int	if_walls_enclose(char **map, t_map *map_info)
+int	if_walls_enclose(char **map, t_map_info *map_info)
 {
 	int	row_count;
 	int	column_count;
@@ -89,7 +89,7 @@ int	if_walls_enclose(char **map, t_map *map_info)
  * @brief Checks if provided character is valid for the game (C/E/P/0/1)
  *        and stores it into the corresponding member of structure.
  */
-static int	if_a_valid_element_and_store(char c, t_map *map_info)
+static int	if_a_valid_element_and_store(char c, t_map_info *map_info)
 {
 	if (c == 'C')
 		map_info->collectibles++;
@@ -120,7 +120,7 @@ static int	if_a_valid_element_and_store(char c, t_map *map_info)
  *     -> return (0)
  * 4. all char valid -> return (1);
  */
-int	if_valid_elements(char **map, t_map *map_info)
+int	if_valid_elements(char **map, t_map_info *map_info)
 {
 	int	row_index;
 	int	column_index;
@@ -152,7 +152,7 @@ int	if_valid_elements(char **map, t_map *map_info)
 /**
  * 
  */
-int	validate_map_data(char **map, t_map *map_info)
+int	validate_map_data(char **map, t_map_info *map_info)
 {
 	if (!map)
 		return (0);

@@ -35,7 +35,7 @@ static int	append_char_to_line(char **dest_string, char buffer[2])
  *         if no characters or memory allocation fails.
  * @details
  *  - Code flow
- *    1. Allocates memory for an empty string (result_line).
+ *    1. Memory allocaion to result_line.
  *    2. Read the first character from the fd into char_buffer
  *    3. while: the chracter is valid and not a newline.
  *       (1): Append a character to result_line
@@ -43,30 +43,28 @@ static int	append_char_to_line(char **dest_string, char buffer[2])
  *    4. if: if nothing to read, memory free, error handling.
  *    5. Returns result_line containing a line
  * @note
- *  * @note
- * - File descriptors keep their position:
- *   each read continues where previous read ended
+ * - File descriptors remembers its read position.
  */
-char	*get_line_from_fd(int fd)
+char	*get_a_line_from_fd(int fd)
 {
 	char	char_buffer[2];
 	char	*result_line;
-	int		read_count;
+	int		read_remaining;
 
 	result_line = malloc(sizeof(char) * 1);
 	if (!result_line)
 		return (NULL);
 	result_line[0] = '\0';
-	read_count = read(fd, char_buffer, 1);
+	read_remaining = read(fd, char_buffer, 1);
 	char_buffer[1] = '\0';
-	while (read_count > 0 && char_buffer[0] != '\n')
+	while (read_remaining > 0 && char_buffer[0] != '\n')
 	{
 		if (!append_char_to_line(&result_line, char_buffer))
 			return (NULL);
-		read_count = read(fd, char_buffer, 1);
+		read_remaining = read(fd, char_buffer, 1);
 		char_buffer[1] = '\0';
 	}
-	if (read_count <= 0 && result_line[0] == '\0')
+	if (read_remaining <= 0 && result_line[0] == '\0')
 	{
 		free(result_line);
 		return (NULL);
@@ -77,7 +75,7 @@ char	*get_line_from_fd(int fd)
 /**
  *  @brief Counts the number of lines in a map file.
  */
-int	count_map_lines(char *filename)
+int	count_lines_in_map_file(char *filename)
 {
 	int		fd;
 	char	*line;
@@ -87,13 +85,18 @@ int	count_map_lines(char *filename)
 	if (fd == -1)
 		return (-1);
 	line_count = 0;
-	line = get_line_from_fd(fd);
+	line = get_a_line_from_fd(fd);
 	while (line != NULL)
 	{
 		line_count++;
 		free(line);
-		line = get_line_from_fd(fd);
+		line = get_a_line_from_fd(fd);
 	}
 	close(fd);
 	return (line_count);
 }
+
+/*
+할 일
+[] get_a_line_from_fd 주석 정리하기
+*/

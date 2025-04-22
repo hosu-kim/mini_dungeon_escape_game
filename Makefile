@@ -6,7 +6,7 @@
 #    By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/04 20:39:28 by hoskim            #+#    #+#              #
-#    Updated: 2025/04/06 17:33:22 by hoskim           ###   ########seoul.kr   #
+#    Updated: 2025/04/21 16:05:18 by hoskim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC = clang
 CFLAGS = -Wall -Wextra -Werror -g
 
 MLX = -Lmlx -lmlx -lXext -lX11 -lm
-SRCS_DIR = srcs/
+SRCS_DIR = ./srcs/
 MAIN_DIR = $(SRCS_DIR)main/
 MAP_MANAGER_DIR = $(SRCS_DIR)map_manager/
 GAME_MANAGER_DIR = $(SRCS_DIR)game_manager/
@@ -28,8 +28,7 @@ SRCS = $(MAIN_DIR)so_long.c \
 		$(GAME_MANAGER_DIR)window_manager.c \
 		$(MAP_MANAGER_DIR)map_elements.c \
 		$(MAP_MANAGER_DIR)get_map_data.c \
-		$(MAP_MANAGER_DIR)map_path_validator.c \
-		$(MAP_MANAGER_DIR)map_path_validator_helpers.c \
+		$(MAP_MANAGER_DIR)if_valid_path.c \
 		$(MAP_MANAGER_DIR)validate_map_data.c \
 		$(MAP_MANAGER_DIR)count_map_lines.c \
 		$(UTILS_DIR)memory_manager.c \

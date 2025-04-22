@@ -6,13 +6,13 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:39:47 by hoskim            #+#    #+#             */
-/*   Updated: 2025/03/23 22:30:17 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/22 00:35:40 by hoskim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	key_press(int keycode, t_game *game)
+int	key_press(int keycode, t_game_resources *game)
 {
 	if (keycode == KEY_ESC)
 		end_game(game, 0);
@@ -27,9 +27,9 @@ int	key_press(int keycode, t_game *game)
 	return (0);
 }
 
-static int	is_valid_move(t_game *game, int new_x, int new_y)
+static int	is_valid_move(t_game_resources *game, int new_x, int new_y)
 {
-	if (new_x < 0 || new_x >= game->width || new_y < 0 || new_y >= game->height)
+	if (new_x < 0 || new_x >= game->map_width || new_y < 0 || new_y >= game->map_height)
 		return (0);
 	if (game->map[new_y][new_x] == '1')
 		return (0);
@@ -39,7 +39,7 @@ static int	is_valid_move(t_game *game, int new_x, int new_y)
 	return (1);
 }
 
-static void	collect_item(t_game *game, int x, int y)
+static void	collect_item(t_game_resources *game, int x, int y)
 {
 	if (game->map[y][x] == 'C')
 	{
@@ -48,7 +48,7 @@ static void	collect_item(t_game *game, int x, int y)
 	}
 }
 
-void	move_player(t_game *game, int dx, int dy)
+void	move_player(t_game_resources *game, int dx, int dy)
 {
 	int	new_x;
 	int	new_y;

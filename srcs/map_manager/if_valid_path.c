@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:38:46 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/06 20:49:50 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/21 20:32:53 by hoskim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*copy_line(char *line, int width)
 	return (line_copy);
 }
 
-void	fill_map_structure(char **map_copy, t_map *map_info)
+void	fill_map_structure(char **map_copy, t_map_info *map_info)
 {
 	int	height;
 	int	width;
@@ -53,7 +53,7 @@ void	fill_map_structure(char **map_copy, t_map *map_info)
 	}
 }
 
-void	flood_fill(char **map, int x, int y, t_map *map_info)
+void	flood_fill(char **map, int x, int y, t_map_info *map_info)
 {
 	if (x < 0 || y < 0 || x >= map_info->width || y >= map_info->height)
 		return ;
@@ -70,7 +70,7 @@ void	flood_fill(char **map, int x, int y, t_map *map_info)
 	flood_fill(map, x, y - 1, map_info);
 }
 
-int	check_path_result(char **map_copy, t_map *check_map)
+int	check_path_result(char **map_copy, t_map_info *check_map)
 {
 	if (check_map->collectibles > 0 || check_map->exit > 0)
 	{
@@ -87,7 +87,7 @@ int	check_path_result(char **map_copy, t_map *check_map)
  * 	2. Size of all pointer variables are 8 bytes in 64 bit
  *  3. (map_info->height + 1): 1 for NULL pointer
  */
-char	**copy_map(char **map, t_map *map_info)
+char	**copy_map(char **map, t_map_info *map_info)
 {
 	char	**map_copy;
 	int		index_h;
@@ -110,19 +110,19 @@ char	**copy_map(char **map, t_map *map_info)
 	return (map_copy);
 }
 
-int	if_valid_path(char **map, t_map *map_info)
+int	if_valid_path(char **map, t_map_info *map_info)
 {
 	int		player_x;
 	int		player_y;
 	char	**map_copy;
-	t_map	copy_map_info;
+	t_map_info	copy_map_info;
 
 	copy_map_info.width = map_info->width;
 	copy_map_info.height = map_info->height;
 	map_copy = copy_map(map, map_info);
 	if (!map_copy)
 		return (0);
-	store_elements_into_t_map(map_copy, &copy_map_info);
+	fill_map_structure(map_copy, &copy_map_info);
 	find_player_position(map_copy, &player_x, &player_y);
 	if (player_x == -1 || player_y == -1)
 	{

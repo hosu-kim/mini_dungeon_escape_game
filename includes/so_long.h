@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 23:25:35 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/06 20:45:09 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/22 01:12:05 by hoskim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,21 @@
 # include <stdio.h>
 
 # define TILE_SIZE 32
-// 키 코드 정의
+// Definitions of the key codes
 # define KEY_ESC 65307
 # define KEY_W 119
 # define KEY_A 97
 # define KEY_S 115
 # define KEY_D 100
 
-// 게임 데이터 구조체
-typedef struct s_game_data
+// Structure of the game resources
+typedef struct s_game_resources
 {
-	void	*mlx;
+	void	*graphics;
 	void	*win;
 	char	**map;
-	int		width;
-	int		height;
+	int		map_width;
+	int		map_height;
 	int		player_x;
 	int		player_y;
 	int		exit_x;
@@ -47,7 +47,7 @@ typedef struct s_game_data
 	void	*img_collectible;
 	void	*img_exit;
 	void	*img_floor;
-}	t_game;
+}	t_game_resources;
 
 typedef struct s_map_data
 {
@@ -61,7 +61,7 @@ typedef struct s_map_data
 	int		player_y;
 	int		exit_x;
 	int		exit_y;
-}	t_map;
+}	t_map_info;
 
 /* function prototypes */
 
@@ -71,47 +71,47 @@ int		read_map_file(char *filename);
 char	**get_map_data(char *filename);
 
 // map_reader.c
-char	*get_line_from_fd(int fd);
-int		count_map_lines(char *filename);
+char	*get_a_line_from_fd(int fd);
+int		count_lines_in_map_file(char *filename);
 
 // map_utils.c
-int		if_rectangular(char **map, t_map *map_info);
-int		if_walls_enclose(char **map, t_map *map_info);
-int		if_valid_elements(char **map, t_map *map_info);
-int		validate_map_data(char **map, t_map *map_info);
+int		if_rectangular(char **map, t_map_info *map_info);
+int		if_walls_enclose(char **map, t_map_info *map_info);
+int		if_valid_elements(char **map, t_map_info *map_info);
+int		validate_map_data(char **map, t_map_info *map_info);
 
 // map_elements.c
 void	find_player_position(char **map, int *x, int *y);
 
 // map_path.c
-int		if_valid_path(char **map, t_map *map_info);
-char	**copy_map(char **map, t_map *map_info);
+int		if_valid_path(char **map, t_map_info *map_info);
+char	**copy_map(char **map, t_map_info *map_info);
 
 // map_path_helpers.c
 char	*copy_line(char *src, int width);
-void	store_elements_into_t_map(char **map_copy, t_map *map_info);
-void	flood_fill(char **map, int x, int y, t_map *map_info);
-int		check_path_result(char **map_copy, t_map *check_map);
+void	store_elements_into_t_map(char **map_copy, t_map_info *map_info);
+void	flood_fill(char **map, int x, int y, t_map_info *map_info);
+int		check_path_result(char **map_copy, t_map_info *check_map);
 
 // game.c
-void	init_game(t_game *game, char **map, t_map *map_info);
-void	restart_game(t_game *game);
-void	setup_game(t_game *game);
-void	end_game(t_game *game, int success);
+void	init_game_resources(t_game_resources *game, char **map, t_map_info *map_info);
+void	restart_game(t_game_resources *game);
+void	setup_game(t_game_resources *game);
+void	end_game(t_game_resources *game, int success);
 
 // render.c
-void	load_images(t_game *game);
-void	render_map(t_game *game);
-void	render_moves(t_game *game);
+void	load_game_images(t_game_resources *game);
+void	render_map(t_game_resources *game);
+void	render_moves(t_game_resources *game);
 
 // events.c
-int		key_press(int keycode, t_game *game);
-void	move_player(t_game *game, int dx, int dy);
+int		key_press(int keycode, t_game_resources *game);
+void	move_player(t_game_resources *game, int dx, int dy);
 
 // window.c
-int		create_window(t_game *game);
-int		close_window(t_game *game);
-int		check_exit(t_game *game, int x, int y);
+int		create_window(t_game_resources *game);
+int		close_window(t_game_resources *game);
+int		check_exit(t_game_resources *game, int x, int y);
 
 // utils.c
 void	ft_putstr_fd(char *s, int fd);
@@ -123,6 +123,6 @@ char	*ft_itoa(int n);
 
 // memory_manager.c
 void	free_map_data_storage(char **map);
-void	exit_game(t_game *game);
+void	exit_game(t_game_resources *game);
 
 #endif
