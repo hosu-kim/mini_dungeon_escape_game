@@ -12,6 +12,34 @@
 
 #include "so_long.h"
 
+char	game_execution(t_map_info map_info, char **map_data_storage)
+{
+	t_game_resources	game_resources;
+
+	game_resources.graphics = mlx_init();
+	if (!game_resources.graphics)
+	{
+		free_map_data_storage(game_resources.map);
+		game_resources.map = NULL;
+		ft_putstr_fd("Error: game graphic initialization failed.\n", 2);
+		return (0);
+	}
+	init_game_resources(&game_resources, map_data_storage, &map_info);
+	if (!create_window(&game_resources))
+	{
+		free_map_data_storage(game_resources.map);
+		game_resources.map = NULL;
+		ft_putstr_fd("Error: Window creation failed.\n", 2);
+		return (0);
+	}
+	load_game_images(&game_resources);
+	render_map(&game_resources);
+	mlx_hook(game_resources.win, 17, 0, close_window, &game_resources);
+	mlx_key_hook(game_resources.win, key_press, &game_resources);
+	mlx_loop(game_resources.graphics);
+	return (1);
+}
+
 /**
  * @brief Entry point of the program.
  * @details
@@ -21,16 +49,14 @@
  * 3. Prepares graphic resources for running the game.
  * 4. Creates a window for the gaming environment.
  */
-
 int	main(int argc, char *argv[])
 {
-	t_game_resources	game_resources;
 	t_map_info			map_info;
 	char				**map_data_storage;
 
 	if (argc != 2)
 	{
-		ft_putstr_fd("Error\nWrong number of arguments\n", 1);
+		ft_putstr_fd("Usage: ./so_long <map_file_path>\n", 2);
 		return (1);
 	}
 	map_data_storage = get_map_data(argv[1]);
@@ -45,30 +71,13 @@ int	main(int argc, char *argv[])
 		map_data_storage = NULL;
 		return (1);
 	}
-	game_resources.graphics = mlx_init();
-	if (!game_resources.graphics)
+	if(!game_execution(map_info, map_data_storage))
 	{
-		free_map_data_storage(game_resources.map);
-		game_resources.map = NULL;
-		ft_putstr_fd("Error: game graphic initialization failed.\n", 2);
+		free_map_data_storage(map_data_storage);
+		map_data_storage = NULL;
 		return (1);
 	}
-	if (!create_window(&game_resources))
-	{
-		free_map_data_storage(game_resources.map);
-		game_resources.map = NULL;
-		ft_putstr_fd("Error: Window creation failed.\n", 2);
-		return (1);
-	}
-	init_game_resources(&game_resources, map_data_storage, &map_info);
-	load_game_images(&game_resources);
-	render_map(&game_resources);
-	mlx_hook(game_resources.win, 17, 0, close_window, &game_resources);
-	mlx_key_hook(game_resources.win, key_press, &game_resources);
-	mlx_loop(game_resources.graphics);
 	return (0);
-// game_execution.c 에 분리해서 함수 담기
-// create_window(), init_game_resources(), load_game_images()
 }
 
 /* MLX step guide
