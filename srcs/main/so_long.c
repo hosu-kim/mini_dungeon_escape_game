@@ -79,9 +79,3 @@ int	main(int argc, char *argv[])
 	}
 	return (0);
 }
-
-/* MLX step guide
-	1. mlx_init(): Sets up iternal structure / resources.
-	2. mlx_new_window(mlx, width, height, "title")
-	3. 
-*/
