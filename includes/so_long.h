@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 23:25:35 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/22 01:12:05 by hoskim           ###   ########.fr       */
+/*   Updated: 2025/04/26 22:18:23 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 // Structure of the game resources
 typedef struct s_game_resources
 {
-	void	*graphics;
-	void	*win;
+	void	*graphic_system;
+	void	*window;
 	char	**map;
 	int		map_width;
 	int		map_height;
@@ -40,7 +40,7 @@ typedef struct s_game_resources
 	int		exit_x;
 	int		exit_y;
 	int		collectibles;
-	int		collectibles_collected;
+	int		collected;
 	int		moves;
 	void	*img_player;
 	void	*img_wall;
@@ -54,11 +54,9 @@ typedef struct s_map_data
 	char	**map;
 	int		width;
 	int		height;
-	int		collectibles;
+	int		collect;
 	int		exit;
 	int		player;
-	int		player_x;
-	int		player_y;
 	int		exit_x;
 	int		exit_y;
 }	t_map_info;
@@ -72,7 +70,7 @@ char	**get_map_data(char *filename);
 
 // map_reader.c
 char	*get_a_line_from_fd(int fd);
-int		count_lines_in_map_file(char *filename);
+int		count_lines_of_map(char *filename);
 
 // map_utils.c
 int		if_rectangular(char **map, t_map_info *map_info);
@@ -89,12 +87,12 @@ char	**copy_map(char **map, t_map_info *map_info);
 
 // map_path_helpers.c
 char	*copy_line(char *src, int width);
-void	store_elements_into_t_map(char **map_copy, t_map_info *map_info);
 void	flood_fill(char **map, int x, int y, t_map_info *map_info);
 int		check_path_result(char **map_copy, t_map_info *check_map);
 
 // game.c
-void	init_game_resources(t_game_resources *game, char **map, t_map_info *map_info);
+void	init_game_resources(t_game_resources *game, char **map, \
+							t_map_info *map_info);
 void	restart_game(t_game_resources *game);
 void	setup_game(t_game_resources *game);
 void	end_game(t_game_resources *game, int success);

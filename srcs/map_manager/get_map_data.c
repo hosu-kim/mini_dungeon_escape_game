@@ -6,24 +6,20 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:36:50 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/05 19:05:21 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/26 20:21:27 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 /**
- * @brief checks if extension is ".ber"
+ * @brief Checks if extension is ".ber"
  * @details 
- * - Used: read_map_file()->get_map_data()
  * - Codeflow
- * 	1. while: Counts length of file name
- * 	2. if(1): length < 5 -> return (0)
- * 	3. else if(1): last 4 characters != ".ber" -> return (0)
- * 	4. If file extension is ".ber" -> return 1
- * 
- * @param filename Filename to check
- * @return if extension is ".ber", 1, if not 0.
+ * 	1. while(1): Counts length of file name
+ * 	2. if(1): length is 4 or less -> return (0)
+ * 	3. else if(1): last 4 characters are not ".ber" -> return (0)
+ * 	4. If file extension is ".ber" -> return (1)
  */
 static int	check_file_extension(char *filename)
 {
@@ -45,13 +41,10 @@ static int	check_file_extension(char *filename)
  * @details
  * - Codeflow
  *   1. check_file_extention()
- *    (1) false: return -1 -> sending error as fd
- *   2. Open file: open(pathname, flags), O_RDONLY(Open for reading only) 
- *                 -> false: return -1
- *   3. Return fd
- * 
- * @param filename File to open
- * @return File descriptor
+ *    (1) If error -> return -1 (-1 to send error as fd)
+ *   2. Open(pathname, flags): O_RDONLY(Open for reading only),
+ *                             Error -> return (-1)
+ *   3. Return the fd
  */
 int	read_map_file(char *filename)
 {
@@ -59,49 +52,23 @@ int	read_map_file(char *filename)
 
 	if (!check_file_extension(filename))
 	{
-		ft_putstr_fd("Error", 2);
-		ft_putstr_fd("Bad extension\n", 2);
+		ft_putstr_fd("Error: Bad extension\n", 2);
 		return (-1);
 	}
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_putstr_fd("Error", 2);
-		ft_putstr_fd("Failed to open file\n", 2);
+		ft_putstr_fd("Error: Failed to open file\n", 2);
 		return (-1);
 	}
 	return (fd);
 }
 
-/**
- * @brief
- * @details
- * ============================== Codeflow ==============================
- *  1. count_map_lines(): counts how many lines in map (.ber)
- *  2. read map file(): Returns a file descriptor.
- *  3. Allocates memomry to map_data.
- *  4. while(1st): appends lines to map_data
- */
-char	**get_map_data(char *filepath)
+void	store_line_into_storage(char **map_data_storage, int line_count, int fd)
 {
-	int		fd;
-	char	**map_data_storage;
 	char	*line;
-	int		line_count;
 	int		i;
 
-	line_count = count_lines_in_map_file(filepath);
-	if (line_count <= 0)
-	{
-		ft_putstr_fd("Error", 2);
-		return (NULL);
-	}
-	fd = read_map_file(filepath);
-	if (fd == -1)
-		return (NULL);
-	map_data_storage = malloc(sizeof(char *) * (line_count + 1));
-	if (!map_data_storage)
-		return (NULL);
 	line = get_a_line_from_fd(fd);
 	i = 0;
 	while (line != NULL && i < line_count)
@@ -111,5 +78,35 @@ char	**get_map_data(char *filepath)
 	}
 	map_data_storage[i] = NULL;
 	close(fd);
+}
+
+/**
+ * @brief
+ * @details
+ * ============================== Codeflow ==============================
+ *  1. count_map_lines(): counts how many lines in map (.ber)
+ *  2. read map file(): Returns a file descriptor.
+ *  3. Allocates memomry to map_data: + 1 for a NULL pointer
+ *  4. store_line_into_storage()
+ */
+char	**get_map_data(char *filepath)
+{
+	int		fd;
+	char	**map_data_storage;
+	int		line_count;
+
+	line_count = count_lines_of_map(filepath);
+	if (line_count <= 0)
+	{
+		ft_putstr_fd("Error: The map is empty\n", 2);
+		return (0);
+	}
+	fd = read_map_file(filepath);
+	if (fd == -1)
+		return (0);
+	map_data_storage = malloc(sizeof(char *) * (line_count + 1));
+	if (!map_data_storage)
+		return (0);
+	store_line_into_storage(map_data_storage, line_count, fd);
 	return (map_data_storage);
 }

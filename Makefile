@@ -6,7 +6,7 @@
 #    By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/04 20:39:28 by hoskim            #+#    #+#              #
-#    Updated: 2025/04/21 16:05:18 by hoskim           ###   ########.fr        #
+#    Updated: 2025/04/26 20:39:57 by hoskim           ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ SRCS = $(MAIN_DIR)so_long.c \
 		$(MAP_MANAGER_DIR)if_valid_path.c \
 		$(MAP_MANAGER_DIR)validate_map_data.c \
 		$(MAP_MANAGER_DIR)count_map_lines.c \
-		$(UTILS_DIR)memory_manager.c \
+		$(UTILS_DIR)memory_deallocation.c \
 		$(UTILS_DIR)ft_str_utils.c \
 		$(UTILS_DIR)ft_put_utils.c
 

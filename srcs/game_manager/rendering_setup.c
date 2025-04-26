@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   rendering_setup.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:39:30 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/22 00:59:40 by hoskim           ###   ########.fr       */
+/*   Updated: 2025/04/26 22:23:44 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	*load_xpm_image(void *mlx, char *path, int *width, int *height)
+static void	*load_xpm_to_image(void *mlx, char *xpm_path, \
+								int *width, int *height)
 {
 	void	*img;
 
-	img = mlx_xpm_file_to_image(mlx, path, width, height);
+	img = mlx_xpm_file_to_image(mlx, xpm_path, width, height);
 	if (!img)
 	{
 		ft_putstr_fd("Error: image loading failed.\n", 2);
-		ft_putstr_fd(path, 2);
+		ft_putstr_fd(xpm_path, 2);
 		ft_putstr_fd("\n", 2);
 		return (NULL);
 	}
@@ -34,16 +35,17 @@ void	load_game_images(t_game_resources *game)
 
 	width = TILE_SIZE;
 	height = TILE_SIZE;
-	game->img_player = load_xpm_image(game->graphics, "assets/player.xpm", \
-										&width, &height);
-	game->img_wall = load_xpm_image(game->graphics, "assets/wall.xpm", \
-									&width, &height);
-	game->img_collectible = load_xpm_image(game->graphics, "assets/collectible.xpm", \
+	game->img_player = load_xpm_to_image(game->graphic_system, \
+										"assets/player.xpm", &width, &height);
+	game->img_wall = load_xpm_to_image(game->graphic_system, \
+									"assets/wall.xpm", &width, &height);
+	game->img_collectible = load_xpm_to_image(game->graphic_system, \
+											"assets/collectible.xpm", \
 											&width, &height);
-	game->img_exit = load_xpm_image(game->graphics, "assets/exit.xpm", \
-									&width, &height);
-	game->img_floor = load_xpm_image(game->graphics, "assets/floor.xpm", \
-									&width, &height);
+	game->img_exit = load_xpm_to_image(game->graphic_system, \
+									"assets/exit.xpm", &width, &height);
+	game->img_floor = load_xpm_to_image(game->graphic_system, \
+									"assets/floor.xpm", &width, &height);
 	if (!game->img_player || !game->img_wall || !game->img_collectible
 		|| !game->img_exit || !game->img_floor)
 		exit_game(game);
@@ -51,7 +53,7 @@ void	load_game_images(t_game_resources *game)
 
 static void	draw_tile(t_game_resources *game, void *img, int x, int y)
 {
-	mlx_put_image_to_window(game->graphics, game->win, img, \
+	mlx_put_image_to_window(game->graphic_system, game->window, img, \
 							x * TILE_SIZE, y * TILE_SIZE);
 }
 
@@ -63,7 +65,8 @@ void	render_moves(t_game_resources *game)
 	num_str = ft_itoa(game->moves);
 	moves_str = ft_strjoin("Moves: ", num_str);
 	free(num_str);
-	mlx_string_put(game->graphics, game->win, 10, 20, 0xFFFFFF, moves_str);
+	mlx_string_put(game->graphic_system, \
+					game->window, 10, 20, 0xFFFFFF, moves_str);
 	free(moves_str);
 }
 
@@ -93,4 +96,3 @@ void	render_map(t_game_resources *game)
 	}
 	render_moves(game);
 }
-

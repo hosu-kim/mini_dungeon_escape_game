@@ -1,1 +1,0 @@
-Map validation check completed: The map is valid.

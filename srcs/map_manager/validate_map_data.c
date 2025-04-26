@@ -6,18 +6,18 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:18:06 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/21 20:32:53 by hoskim           ###   ########.fr       */
+/*   Updated: 2025/04/26 20:59:41 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 /** 
- * @brief check if every line has the same num of chars as the first line.
+ * @brief Checks if every line has the same num of chars as the first line.
  * @details
- * - Codeflow
+ * ============================== Codeflow ==============================
  * 1. while(1): Counts width of the first line and stores it into map_info
  * 2. while(2): Counts height
- *    (a) while & if: compares every line if it has the same width 
+ *    (1) while & if: Compare every line if it has the same width
  *                    as the first line.
  * 3. Stores height into map_info.
  * */
@@ -39,7 +39,7 @@ int	if_rectangular(char **map, t_map_info *map_info)
 			width++;
 		if (width != map_info->width)
 		{
-			ft_putstr_fd("Error", 2);
+			ft_putstr_fd("Error: The map is not rectangular", 2);
 			return (0);
 		}
 		height++;
@@ -52,12 +52,12 @@ int	if_rectangular(char **map, t_map_info *map_info)
  * @brief Checks if all edges of map are filled with '1'
  * @details
  * - Codeflow
- *     1. while(1st): counts row until the end.
- *         (1) counts column until the end in every row.
- *         (2) if count is in the first or the last row
+ *     1. while(1): Counts row until the end.
+ *         while(2) Counts columns until the end in every row.
+ *         if(1) If count is in the first or the last row
  *             of the first or the last column
- *             and it doesn't have 1 -> return 0
- *     2. If walls enclose -> Return 1
+ *             and it doesn't have 1 -> return(0)
+ *     2. Walls enclose -> return(1)
  */
 int	if_walls_enclose(char **map, t_map_info *map_info)
 {
@@ -74,8 +74,7 @@ int	if_walls_enclose(char **map, t_map_info *map_info)
 					|| column_count == 0 || column_count == map_info->width - 1)
 				&& (map[row_count][column_count] != '1'))
 			{
-				ft_putstr_fd("Error: The walls don't enclose the map.\
-->if_walls_enclose()\n", 2);
+				ft_putstr_fd("Error: The walls don't enclose the map.\n", 2);
 				return (0);
 			}
 			column_count++;
@@ -92,7 +91,7 @@ int	if_walls_enclose(char **map, t_map_info *map_info)
 static int	if_a_valid_element_and_store(char c, t_map_info *map_info)
 {
 	if (c == 'C')
-		map_info->collectibles++;
+		map_info->collect++;
 	else if (c == 'E')
 		map_info->exit++;
 	else if (c == 'P')
@@ -109,23 +108,17 @@ static int	if_a_valid_element_and_store(char c, t_map_info *map_info)
  * @brief Checks all character are valid for the game.
  * @details
  * - Codeflow
- * 1. Initializes members of provided structure
- * 2. while(1): Counts rows until the height of map
- *     (1) while: Counts rows until the width in every row count
- *     (2) if: Checks if not a valid character -> return (0)
- * 3. if: Checks if map doesn't have
- *     (1) At least one 'C'(collectables)
- *     (2) Only one 'E'(exit)
- *     (3) Only one 'P'(player)
- *     -> return (0)
- * 4. all char valid -> return (1);
+ * 1. while(1): Counts rows
+ *     (1) while: Counts columns
+ *     (2) if: not a valid character -> return (0)
+ * 2. all char valid -> return (1);
  */
 int	if_valid_elements(char **map, t_map_info *map_info)
 {
 	int	row_index;
 	int	column_index;
 
-	map_info->collectibles = 0;
+	map_info->collect = 0;
 	map_info->exit = 0;
 	map_info->player = 0;
 	row_index = 0;
@@ -134,14 +127,14 @@ int	if_valid_elements(char **map, t_map_info *map_info)
 		column_index = 0;
 		while (column_index < map_info->width)
 		{
-			if (!if_a_valid_element_and_store(map[row_index][column_index], map_info))
+			if (!if_a_valid_element_and_store(map[row_index][column_index], \
+				map_info))
 				return (0);
 			column_index++;
 		}
 		row_index++;
 	}
-	if (map_info->collectibles < 1 || map_info->exit != 1
-		|| map_info->player != 1)
+	if (map_info->collect < 1 || map_info->exit != 1 || map_info->player != 1)
 	{
 		ft_putstr_fd("Error: Map elements are incorrect.\n", 2);
 		return (0);
@@ -150,7 +143,11 @@ int	if_valid_elements(char **map, t_map_info *map_info)
 }
 
 /**
- * 
+ * @brief Validates the map
+ *        (1) If it's 'rectangular'
+ *        (2) If the walls 'enclose' the map
+ *        (3) If it has 'valid elements' (C, E, P, 0, 1)
+ *        (4) If the 'path' is valid
  */
 int	validate_map_data(char **map, t_map_info *map_info)
 {

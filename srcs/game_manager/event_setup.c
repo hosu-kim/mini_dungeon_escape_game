@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events.c                                           :+:      :+:    :+:   */
+/*   event_setup.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:39:47 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/22 00:35:40 by hoskim           ###   ########.fr       */
+/*   Updated: 2025/04/26 21:00:23 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	is_valid_move(t_game_resources *game, int new_x, int new_y)
 	if (game->map[new_y][new_x] == '1')
 		return (0);
 	if (game->map[new_y][new_x] == 'E' &&
-		game->collectibles_collected < game->collectibles)
+		game->collected < game->collectibles)
 		return (0);
 	return (1);
 }
@@ -43,7 +43,7 @@ static void	collect_item(t_game_resources *game, int x, int y)
 {
 	if (game->map[y][x] == 'C')
 	{
-		game->collectibles_collected++;
+		game->collected++;
 		game->map[y][x] = '0';
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:38:46 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/21 20:32:53 by hoskim           ###   ########.fr       */
+/*   Updated: 2025/04/26 20:59:41 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	fill_map_structure(char **map_copy, t_map_info *map_info)
 	int	height;
 	int	width;
 
-	map_info->collectibles = 0;
+	map_info->collect = 0;
 	map_info->exit = 0;
 	height = 0;
 	while (map_copy[height])
@@ -44,7 +44,7 @@ void	fill_map_structure(char **map_copy, t_map_info *map_info)
 		while (map_copy[height][width])
 		{
 			if (map_copy[height][width] == 'C')
-				map_info->collectibles++;
+				map_info->collect++;
 			else if (map_copy[height][width] == 'E')
 				map_info->exit++;
 			width++;
@@ -60,7 +60,7 @@ void	flood_fill(char **map, int x, int y, t_map_info *map_info)
 	if (map[y][x] == '1' || map[y][x] == 'F')
 		return ;
 	if (map[y][x] == 'C')
-		map_info->collectibles--;
+		map_info->collect--;
 	else if (map[y][x] == 'E')
 		map_info->exit--;
 	map[y][x] = 'F';
@@ -72,7 +72,7 @@ void	flood_fill(char **map, int x, int y, t_map_info *map_info)
 
 int	check_path_result(char **map_copy, t_map_info *check_map)
 {
-	if (check_map->collectibles > 0 || check_map->exit > 0)
+	if (check_map->collect > 0 || check_map->exit > 0)
 	{
 		ft_putstr_fd("Error: Not all collectibles or exit are reachable.\n", 2);
 		free_map_data_storage(map_copy);

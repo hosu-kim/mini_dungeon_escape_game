@@ -1,66 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.c                                             :+:      :+:    :+:   */
+/*   game_setup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:39:09 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/22 00:53:40 by hoskim           ###   ########.fr       */
+/*   Updated: 2025/04/26 22:15:43 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	init_game_resources(t_game_resources *game, char **map, t_map_info *map_info)
+/**
+ * @brief Stores game data from map_info to game_resources
+ */
+void	init_game_resources(t_game_resources *game_resources, \
+							char **map_data_storage, t_map_info *map_info)
 {
-	game->map = map;
-	game->map_height = map_info->height;
-	game->map_width = map_info->width;
-	game->collectibles = map_info->collectibles;
-	game->collectibles_collected = 0;
-	game->moves = 0;
-	game->player_x = map_info->player_x;
-	game->player_y = map_info->player_y;
-	game->exit_x = map_info->exit_x;
-	game->exit_y = map_info->exit_y;
-	find_player_position(map, &game->player_x, &game->player_y);
-	// load_images(game);
+	game_resources->map = map_data_storage;
+	game_resources->map_height = map_info->height;
+	game_resources->map_width = map_info->width;
+	game_resources->collectibles = map_info->collect;
+	game_resources->collected = 0;
+	game_resources->moves = 0;
+	game_resources->exit_x = map_info->exit_x;
+	game_resources->exit_y = map_info->exit_y;
+	find_player_position(map_data_storage, \
+						&game_resources->player_x, &game_resources->player_y);
 }
 
-static void	calc_window_size(t_game_resources *game, int *width, int *height)
-{
-	*width = game->map_width * TILE_SIZE;
-	*height = game->map_height * TILE_SIZE;
-}
-
-void	restart_game(t_game_resources *game)
-{
-	game->collectibles_collected = 0;
-	game->moves = 0;
-	find_player_position(game->map, &game->player_x, &game->player_y);
-	render_map(game);
-}
-
-void	end_game(t_game_resources *game, int success)
+/**
+ * @brief Ends game if the player successfully escapes.
+ */
+void	end_game(t_game_resources *game_resources, int success)
 {
 	if (success)
-		ft_putstr_fd("\nGame clear! You got all \
-collectibles and escaped.\n", 1);
+		ft_putstr_fd("\nGame clear! You escaped the dungeon.\n", 1);
 	else
 		ft_putstr_fd("\nGame ended.\n", 1);
-	ft_putstr_fd("Whole moves: ", 1);
-	ft_putnbr_fd(game->moves, 1);
+	ft_putstr_fd("Total moves: ", 1);
+	ft_putnbr_fd(game_resources->moves, 1);
 	ft_putstr_fd("\n", 1);
-	exit_game(game);
+	exit_game(game_resources);
 	exit(0);
-}
-
-void	setup_game(t_game_resources *game)
-{
-	int	win_width;
-	int	win_height;
-
-	calc_window_size(game, &win_width, &win_height);
-	render_map(game);
 }
