@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 14:41:09 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/26 22:29:33 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/27 14:41:56 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	game_execution(t_map_info map_info, char **map_data_storage)
 		return (0);
 	}
 	load_game_images(&game_resources);
-	render_map(&game_resources); // Here
+	render_map(&game_resources);
 	mlx_hook(game_resources.window, 17, 0, close_window, &game_resources);
 	mlx_key_hook(game_resources.window, key_press, &game_resources);
 	mlx_loop(game_resources.graphic_system);
@@ -95,5 +95,3 @@ int	main(int argc, char *argv[])
 	}
 	return (0);
 }
-
-// To read: game_execution

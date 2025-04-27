@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 23:25:35 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/26 22:18:23 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/27 16:14:17 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,64 +63,50 @@ typedef struct s_map_data
 
 /* function prototypes */
 
-// map_data_reader.c
-char	**get_map_data(char *filename);
-int		read_map_file(char *filename);
-char	**get_map_data(char *filename);
+//event_setup.c
+int		key_press(int keycode, t_game_resources *game_resources);
 
-// map_reader.c
-char	*get_a_line_from_fd(int fd);
-int		count_lines_of_map(char *filename);
-
-// map_utils.c
-int		if_rectangular(char **map, t_map_info *map_info);
-int		if_walls_enclose(char **map, t_map_info *map_info);
-int		if_valid_elements(char **map, t_map_info *map_info);
-int		validate_map_data(char **map, t_map_info *map_info);
-
-// map_elements.c
-void	find_player_position(char **map, int *x, int *y);
-
-// map_path.c
-int		if_valid_path(char **map, t_map_info *map_info);
-char	**copy_map(char **map, t_map_info *map_info);
-
-// map_path_helpers.c
-char	*copy_line(char *src, int width);
-void	flood_fill(char **map, int x, int y, t_map_info *map_info);
-int		check_path_result(char **map_copy, t_map_info *check_map);
-
-// game.c
-void	init_game_resources(t_game_resources *game, char **map, \
-							t_map_info *map_info);
-void	restart_game(t_game_resources *game);
-void	setup_game(t_game_resources *game);
-void	end_game(t_game_resources *game, int success);
-
-// render.c
-void	load_game_images(t_game_resources *game);
-void	render_map(t_game_resources *game);
-void	render_moves(t_game_resources *game);
-
-// events.c
-int		key_press(int keycode, t_game_resources *game);
-void	move_player(t_game_resources *game, int dx, int dy);
-
-// window.c
-int		create_window(t_game_resources *game);
+//game_env_setup.c
+void	init_game_resources(t_game_resources *game_resources, \
+	char **map_data_storage, t_map_info *map_info);
+void	end_game(t_game_resources *game_resources, int success);
+int		create_window(t_game_resources *game_resources);
 int		close_window(t_game_resources *game);
 int		check_exit(t_game_resources *game, int x, int y);
 
-// utils.c
+// rendering_setup.c
+void	load_game_images(t_game_resources *game);
+void	render_map(t_game_resources *game);
+
+// get_map_data.c
+int		read_map_file(char *filename);
+void	store_line_into_storage(char **map_storage, int line_count, int fd);
+char	**get_map_data(char *filepath);
+
+// if_valid_path.c
+int		if_valid_path(char **map, t_map_info *map_info);
+
+// mpa_elements.c
+void	find_player_position(char **map_data_storage, int *x, int *y);
+
+//map_reading.c
+char	*get_a_line_from_fd(int fd);
+int		count_lines_of_map(char *filename);
+char	**copy_map(char **map, t_map_info *map_info);
+
+// validate_map_data.c
+int		validate_map_data(char **map, t_map_info *map_info);
+
+// ft_put_utils.c
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 
-// string_utils.c
+//ft_str_utils.c
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_itoa(int n);
 
-// memory_manager.c
-void	free_map_data_storage(char **map);
+//memory_deallocation.c 
+void	free_map_data_storage(char **map_data_storage);
 void	exit_game(t_game_resources *game);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:18:06 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/26 20:59:41 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/27 14:56:01 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  *                    as the first line.
  * 3. Stores height into map_info.
  * */
-int	if_rectangular(char **map, t_map_info *map_info)
+static int	if_rectangular(char **map, t_map_info *map_info)
 {
 	int	height;
 	int	width;
@@ -59,7 +59,7 @@ int	if_rectangular(char **map, t_map_info *map_info)
  *             and it doesn't have 1 -> return(0)
  *     2. Walls enclose -> return(1)
  */
-int	if_walls_enclose(char **map, t_map_info *map_info)
+static int	if_walls_enclose(char **map, t_map_info *map_info)
 {
 	int	row_count;
 	int	column_count;
@@ -113,7 +113,7 @@ static int	if_a_valid_element_and_store(char c, t_map_info *map_info)
  *     (2) if: not a valid character -> return (0)
  * 2. all char valid -> return (1);
  */
-int	if_valid_elements(char **map, t_map_info *map_info)
+static int	if_valid_elements(char **map, t_map_info *map_info)
 {
 	int	row_index;
 	int	column_index;

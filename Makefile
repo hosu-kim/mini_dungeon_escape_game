@@ -6,7 +6,7 @@
 #    By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/04 20:39:28 by hoskim            #+#    #+#              #
-#    Updated: 2025/04/26 20:39:57 by hoskim           ###   ########seoul.kr   #
+#    Updated: 2025/04/27 16:15:44 by hoskim           ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,14 +23,13 @@ UTILS_DIR = $(SRCS_DIR)utils/
 
 SRCS = $(MAIN_DIR)so_long.c \
 		$(GAME_MANAGER_DIR)event_setup.c \
-		$(GAME_MANAGER_DIR)game_setup.c \
+		$(GAME_MANAGER_DIR)game_env_setup.c \
 		$(GAME_MANAGER_DIR)rendering_setup.c \
-		$(GAME_MANAGER_DIR)window_setup.c \
 		$(MAP_MANAGER_DIR)map_elements.c \
 		$(MAP_MANAGER_DIR)get_map_data.c \
 		$(MAP_MANAGER_DIR)if_valid_path.c \
-		$(MAP_MANAGER_DIR)validate_map_data.c \
-		$(MAP_MANAGER_DIR)count_map_lines.c \
+		$(MAP_MANAGER_DIR)if_valid_map_data.c \
+		$(MAP_MANAGER_DIR)map_reading.c \
 		$(UTILS_DIR)memory_deallocation.c \
 		$(UTILS_DIR)ft_str_utils.c \
 		$(UTILS_DIR)ft_put_utils.c

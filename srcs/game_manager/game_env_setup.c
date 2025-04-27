@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_setup.c                                       :+:      :+:    :+:   */
+/*   game_env_setup.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:39:09 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/26 22:15:43 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/27 14:45:15 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,46 @@ void	end_game(t_game_resources *game_resources, int success)
 	ft_putstr_fd("\n", 1);
 	exit_game(game_resources);
 	exit(0);
+}
+
+/**
+ * @breif Creates a window for the game
+ */
+int	create_window(t_game_resources *game_resources)
+{
+	int	win_width;
+	int	win_height;
+
+	win_width = game_resources->map_width * TILE_SIZE;
+	win_height = game_resources->map_height * TILE_SIZE;
+	game_resources->window = mlx_new_window(game_resources->graphic_system, \
+							win_width, win_height, "Mini Dungeon Escape");
+	if (!game_resources->window)
+	{
+		exit_game(game_resources);
+		return (0);
+	}
+	return (1);
+}
+
+/**
+ * @brief Wrapper function of end_game() for mlx_hook()
+ */
+int	close_window(t_game_resources *game)
+{
+	end_game(game, 0);
+	return (0);
+}
+
+/**
+ * @brief Checks if the player can exit the game at the given coorinates.(좌표)
+ */
+int	check_exit(t_game_resources *game, int x, int y)
+{
+	if (game->map[y][x] == 'E' && game->collected == game->collectibles)
+	{
+		end_game(game, 1);
+		return (1);
+	}
+	return (0);
 }

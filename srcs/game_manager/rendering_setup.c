@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:39:30 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/26 22:23:44 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/27 14:47:45 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	draw_tile(t_game_resources *game, void *img, int x, int y)
 							x * TILE_SIZE, y * TILE_SIZE);
 }
 
-void	render_moves(t_game_resources *game)
+static void	render_moves(t_game_resources *game)
 {
 	char	*moves_str;
 	char	*num_str;

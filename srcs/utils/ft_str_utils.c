@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 18:16:51 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/05 17:39:41 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/27 15:33:16 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * @note Only used for 'ft_strjoin()' in the current file
  * @return The length of the string (int)
  */
-int	ft_strlen(char *str)
+static int	ft_strlen(char *str)
 {
 	int	len_of_str;
 

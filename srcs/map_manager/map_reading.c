@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_map_lines.c                                  :+:      :+:    :+:   */
+/*   map_reading.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:38:27 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/26 20:07:25 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/27 15:25:24 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	append_char_to_line(char **dest_string, char buffer[2])
  *    4. if(2): if nothing to read, free memory.
  *    5. Returns result_line
  * @note
- * - File descriptors remembers its read position.
+ * - File descriptor remembers its read position.
  */
 char	*get_a_line_from_fd(int fd)
 {
@@ -96,4 +96,51 @@ int	count_lines_of_map(char *filename)
 	}
 	close(fd);
 	return (line_count);
+}
+
+static char	*copy_line(char *line, int width)
+{
+	char	*line_copy;
+	int		i;
+
+	line_copy = malloc(sizeof(char) * (width + 1));
+	if (!line_copy)
+		return (NULL);
+	i = 0;
+	while (i < width)
+	{
+		line_copy[i] = line[i];
+		i++;
+	}
+	line_copy[i] = '\0';
+	return (line_copy);
+}
+
+/**
+ * @note
+ * 	1. allocate_copy_line()->map_path_validator_helpers.c
+ * 	2. Size of all pointer variables are 8 bytes in 64 bit
+ *  3. (map_info->height + 1): 1 for NULL pointer
+ */
+char	**copy_map(char **map, t_map_info *map_info)
+{
+	char	**map_copy;
+	int		i;
+
+	map_copy = malloc(sizeof(char *) * (map_info->height + 1));
+	if (!map_copy)
+		return (NULL);
+	i = 0;
+	while (i < map_info->height)
+	{
+		map_copy[i] = copy_line(map[i], map_info->width);
+		if (!map_copy[i])
+		{
+			free_map_data_storage(map_copy);
+			return (NULL);
+		}
+		i++;
+	}
+	map_copy[i] = NULL;
+	return (map_copy);
 }

@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:36:50 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/26 20:21:27 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/27 14:51:10 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	read_map_file(char *filename)
 	return (fd);
 }
 
-void	store_line_into_storage(char **map_data_storage, int line_count, int fd)
+void	store_line_into_storage(char **map_storage, int line_count, int fd)
 {
 	char	*line;
 	int		i;
@@ -73,10 +73,10 @@ void	store_line_into_storage(char **map_data_storage, int line_count, int fd)
 	i = 0;
 	while (line != NULL && i < line_count)
 	{
-		map_data_storage[i++] = line;
+		map_storage[i++] = line;
 		line = get_a_line_from_fd(fd);
 	}
-	map_data_storage[i] = NULL;
+	map_storage[i] = NULL;
 	close(fd);
 }
 
