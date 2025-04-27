@@ -29,6 +29,12 @@ int	create_window(t_game_resources *game_resources)
 	return (1);
 }
 
+int	close_window(t_game_resources *game)
+ {
+ 	end_game(game, 0);
+ 	return (0);
+ }
+
 int	check_exit(t_game_resources *game, int x, int y)
 {
 	if (game->map[y][x] == 'E' &&

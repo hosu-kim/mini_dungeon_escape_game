@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdlib.h>
 
 /**
  * @brief Frees all memory allocated for a 2D character array
