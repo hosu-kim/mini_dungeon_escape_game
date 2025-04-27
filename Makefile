@@ -6,13 +6,13 @@
 #    By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/04 20:39:28 by hoskim            #+#    #+#              #
-#    Updated: 2025/04/27 16:15:44 by hoskim           ###   ########seoul.kr   #
+#    Updated: 2025/04/27 20:20:34 by hoskim           ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 CC = clang
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 
 MLX = -Lmlx -lmlx -lXext -lX11 -lm
 SRCS_DIR = ./srcs/
