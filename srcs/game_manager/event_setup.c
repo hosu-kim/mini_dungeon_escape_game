@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:39:47 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/27 16:13:46 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/28 20:22:07 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@ static int	is_valid_move(t_game_resources *game, int new_x, int new_y)
 		|| new_y >= game->map_height)
 		return (0);
 	if (game->map[new_y][new_x] == '1')
-		return (0);
-	if (game->map[new_y][new_x] == 'E' &&
-		game->collected < game->collectibles)
 		return (0);
 	return (1);
 }
@@ -34,22 +31,23 @@ static void	collect_item(t_game_resources *game, int x, int y)
 	}
 }
 
-static void	move_player(t_game_resources *game, int x, int y)
+void	move_player(t_game_resources *game, int dx, int dy)
 {
 	int	new_x;
 	int	new_y;
 
-	new_x = game->player_x + x;
-	new_y = game->player_y + y;
+	new_x = game->player_x + dx;
+	new_y = game->player_y + dy;
 	if (!is_valid_move(game, new_x, new_y))
 		return ;
-	game->map[game->player_y][game->player_x] = '0';
 	collect_item(game, new_x, new_y);
-	if (check_exit(game, new_x, new_y))
+	if (game->map[new_y][new_x] == 'E' && game->collected == game->collectibles)
+	{
+		end_game(game, 1);
 		return ;
+	}
 	game->player_x = new_x;
 	game->player_y = new_y;
-	game->map[game->player_y][game->player_x] = 'P';
 	game->moves++;
 	render_map(game);
 	ft_putstr_fd("Moves: ", 1);

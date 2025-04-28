@@ -6,12 +6,11 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 15:13:44 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/26 21:03:58 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/28 18:36:28 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 void	find_player_position(char **map_data_storage, int *x, int *y)
 {
