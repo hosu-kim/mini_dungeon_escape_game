@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 23:25:35 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/27 16:14:17 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/29 14:01:39 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ typedef struct s_game_resources
 	int		map_height;
 	int		player_x;
 	int		player_y;
-	int		exit_x;
-	int		exit_y;
 	int		collectibles;
 	int		collected;
 	int		moves;
@@ -57,8 +55,6 @@ typedef struct s_map_data
 	int		collect;
 	int		exit;
 	int		player;
-	int		exit_x;
-	int		exit_y;
 }	t_map_info;
 
 /* function prototypes */

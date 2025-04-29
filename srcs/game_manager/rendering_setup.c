@@ -1,15 +1,9 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   rendering_setup.c                                  :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/08 11:39:30 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/28 20:21:30 by hoskim           ###   ########seoul.kr  */
-/*                                                                            */
-/* ************************************************************************** */
-
+/*
+file: srcs/rendering_setup.c
+description: Load XPM assets and render the game map and move counter.
+author: hosu-kim
+created: 2025/03/08 11:39:30
+*/
 #include "so_long.h"
 
 static void	*load_xpm_to_image(void *mlx, char *xpm_path, int *w, int *h)

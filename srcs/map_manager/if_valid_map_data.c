@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate_map_data.c                                :+:      :+:    :+:   */
+/*   if_valid_map_data.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:18:06 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/27 14:56:01 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/29 14:18:24 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	if_rectangular(char **map, t_map_info *map_info)
 			width++;
 		if (width != map_info->width)
 		{
-			ft_putstr_fd("Error: The map is not rectangular", 2);
+			ft_putstr_fd("Error: The map is not rectangular\n", 2);
 			return (0);
 		}
 		height++;

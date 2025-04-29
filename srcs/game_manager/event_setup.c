@@ -1,17 +1,22 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   event_setup.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/08 11:39:47 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/28 20:22:07 by hoskim           ###   ########seoul.kr  */
-/*                                                                            */
-/* ************************************************************************** */
-
+/*
+file: srcs/event_setup.c
+description: Handle player movement logic, item collection, exit checks,
+             and key-press events.
+author: hosu-kim
+created: 2025/03/08 11:39:47
+*/
 #include "so_long.h"
 
+/**
+ * @brief Check if the target position is within bounds and not a wall.
+ * @details
+ *   - Validates that (new_x, new_y) lies inside the map dimensions.
+ *   - Ensures the tile at the destination is not '1' (wall).
+ * @param  game  Pointer to the game resources containing map data.
+ * @param  new_x X-coordinate of the intended move.
+ * @param  new_y Y-coordinate of the intended move.
+ * @return int   1 if movement is valid; 0 otherwise.
+ */
 static int	is_valid_move(t_game_resources *game, int new_x, int new_y)
 {
 	if (new_x < 0 || new_x >= game->map_width || new_y < 0 \
@@ -22,6 +27,15 @@ static int	is_valid_move(t_game_resources *game, int new_x, int new_y)
 	return (1);
 }
 
+/**
+ * @brief Collect an item on the map if present at the specified tile.
+ * @details
+ *   - If the tile contains 'C', increments game->collected count.
+ *   - Marks the tile as empty ('0') after collection.
+ * @param game Pointer to the game resources containing map data.
+ * @param x    X-coordinate of the tile.
+ * @param y    Y-coordinate of the tile.
+ */
 static void	collect_item(t_game_resources *game, int x, int y)
 {
 	if (game->map[y][x] == 'C')
@@ -31,6 +45,20 @@ static void	collect_item(t_game_resources *game, int x, int y)
 	}
 }
 
+/**
+ * @brief Move the player and handle game-state updates.
+ * @details
+ *   - Calculates the new position based on (dx, dy).
+ *   - Checks validity of move; exits early if invalid.
+ *   - Collects any item at the destination.
+ *   - Checks for exit condition (tile 'E' and all collectibles gathered).
+ *     - Calls end_game() on success.
+ *   - Updates player coordinates and increments move counter.
+ *   - Re-renders the map and prints the current move count to stdout.
+ * @param game Pointer to the game resources.
+ * @param dx   Change in X direction (-1, 0, +1).
+ * @param dy   Change in Y direction (-1, 0, +1).
+ */
 void	move_player(t_game_resources *game, int dx, int dy)
 {
 	int	new_x;
@@ -55,6 +83,16 @@ void	move_player(t_game_resources *game, int dx, int dy)
 	ft_putstr_fd("\n", 1);
 }
 
+/**
+ * @brief Handle key-press events to move player or exit game.
+ * @details
+ *   - ESC: triggers immediate game end.
+ *   - W/A/S/D: moves player up/left/down/right.
+ *   - Always returns 0 per MLX hook convention.
+ * @param  keycode        Key code of the pressed key.
+ * @param  game_resources Pointer to the game resources.
+ * @return int            Always 0.
+ */
 int	key_press(int keycode, t_game_resources *game_resources)
 {
 	if (keycode == KEY_ESC)
