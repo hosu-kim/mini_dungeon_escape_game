@@ -6,7 +6,7 @@
 /*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:36:50 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/27 14:51:10 by hoskim           ###   ########seoul.kr  */
+/*   Updated: 2025/04/29 12:52:23 by hoskim           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	store_line_into_storage(char **map_storage, int line_count, int fd)
 }
 
 /**
- * @brief
+ * @brief gets map data from the file path.
  * @details
  * ============================== Codeflow ==============================
  *  1. count_map_lines(): counts how many lines in map (.ber)
