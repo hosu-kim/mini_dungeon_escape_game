@@ -1,6 +1,6 @@
 # Mini Dungeon Escape
 <p align="center">
-  <img src="images/example.png" alt="Run example" width="400"/>
+  <img src="images/example.png" alt="Run example" width="500"/>
 </p>
 ## Description
 
