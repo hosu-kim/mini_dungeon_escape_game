@@ -1,17 +1,15 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 23:25:35 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/29 14:01:39 by hoskim           ###   ########seoul.kr  */
-/*                                                                            */
-/* ************************************************************************** */
+/*
+file: includes/mini_dungeon_escape.h
+description: Defines the core structures, constants, and function prototypes
+			 for the Mini Dungeon Escape game. 
+			 This file includes declarations for game resource management,
+			 map handling, event processing, rendering, and utility functions.
+author: hosu-kim
+created: 2025-03-05 22:25:35 UTC
+*/
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef MINI_DUNGEON_ESCAPE_H
+# define MINI_DUNGEON_ESCAPE_H
 
 # include "../mlx/mlx.h"
 # include <stdlib.h>
@@ -94,8 +92,8 @@ char	**copy_map(char **map, t_map_info *map_info);
 int		validate_map_data(char **map, t_map_info *map_info);
 
 // ft_put_utils.c
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putnbr_fd(int n, int fd);
+void	putstr_fd(char *s, int fd);
+void	putnbr_fd(int n, int fd);
 
 //ft_str_utils.c
 char	*ft_strjoin(char *s1, char *s2);

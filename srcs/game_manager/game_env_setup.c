@@ -1,11 +1,12 @@
 /*
-file: srcs/game_env_setup.c
+file: srcs/game_manager/game_env_setup.c
 description: Initialize game resources, create the window, 
-             and handle game termination.
+			 and handle game termination.
 author: hosu-kim
-created: 2025/03/08 11:39:09
+created: 2025/03/08 10:39:09 UTC
 */
-#include "so_long.h"
+
+#include "mini_dungeon_escape.h"
 
 /**
  * @brief   Initialize the game resources from map metadata and raw map data.
@@ -47,12 +48,12 @@ void	init_game_resources(t_game_resources *game_resources, \
 void	end_game(t_game_resources *game_resources, int success)
 {
 	if (success)
-		ft_putstr_fd("\nGame clear! You escaped the dungeon.\n", 1);
+		putstr_fd("\nGame clear! You escaped the dungeon.\n", 1);
 	else
-		ft_putstr_fd("\nGame ended.\n", 1);
-	ft_putstr_fd("Total moves: ", 1);
-	ft_putnbr_fd(game_resources->moves, 1);
-	ft_putstr_fd("\n", 1);
+		putstr_fd("\nGame ended.\n", 1);
+	putstr_fd("Total moves: ", 1);
+	putnbr_fd(game_resources->moves, 1);
+	putstr_fd("\n", 1);
 	exit_game(game_resources);
 	exit(0);
 }

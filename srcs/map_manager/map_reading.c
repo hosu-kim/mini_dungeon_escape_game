@@ -1,16 +1,14 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   map_reading.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/08 11:38:27 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/27 15:25:24 by hoskim           ###   ########seoul.kr  */
-/*                                                                            */
-/* ************************************************************************** */
+/*
+file: srcs/map_manager/map_reading.c
+description: Provides utility functions for reading map files line by line,
+			 counting lines, and creating deep copies of map data.
+			 These functions are fundamental for processing
+			 and manipulating the game map.
+author: hosu-kim
+created: 2025/03/08 10:38:27 UTC
+*/
 
-#include "so_long.h"
+#include "mini_dungeon_escape.h"
 
 /**
  * @brief Appends a character from the buffer to the string.

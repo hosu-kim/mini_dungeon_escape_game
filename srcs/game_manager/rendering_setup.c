@@ -1,10 +1,11 @@
 /*
-file: srcs/rendering_setup.c
+file: srcs/game_manager/rendering_setup.c
 description: Load XPM assets and render the game map and move counter.
 author: hosu-kim
-created: 2025/03/08 11:39:30
+created: 2025/03/08 10:39:30 UTC
 */
-#include "so_long.h"
+
+#include "mini_dungeon_escape.h"
 
 static void	*load_xpm_to_image(void *mlx, char *xpm_path, int *w, int *h)
 {
@@ -13,9 +14,9 @@ static void	*load_xpm_to_image(void *mlx, char *xpm_path, int *w, int *h)
 	img = mlx_xpm_file_to_image(mlx, xpm_path, w, h);
 	if (!img)
 	{
-		ft_putstr_fd("Error: image loading failed.\n", 2);
-		ft_putstr_fd(xpm_path, 2);
-		ft_putstr_fd("\n", 2);
+		putstr_fd("Error: image loading failed.\n", 2);
+		putstr_fd(xpm_path, 2);
+		putstr_fd("\n", 2);
 		exit_game(NULL);
 	}
 	return (img);

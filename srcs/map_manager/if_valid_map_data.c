@@ -1,16 +1,14 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   if_valid_map_data.c                                :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/06 22:18:06 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/29 14:18:24 by hoskim           ###   ########seoul.kr  */
-/*                                                                            */
-/* ************************************************************************** */
+/*
+file: srcs/map_manager/if_valid_data.c
+description: Implements functions to validate the integrity and correctness
+			 of the game map data. This includes checks for rectangular shape,
+			 wall enclosure, valid map elements (player, exit, collectibles,
+			 empty spaces, walls), and path validity.
+author: hosu-kim
+created: 2025/03/06 21:18:06 UTC
+*/
 
-#include "so_long.h"
+#include "mini_dungeon_escape.h"
 /** 
  * @brief Checks if every line has the same num of chars as the first line.
  * @details
@@ -39,7 +37,7 @@ static int	if_rectangular(char **map, t_map_info *map_info)
 			width++;
 		if (width != map_info->width)
 		{
-			ft_putstr_fd("Error: The map is not rectangular\n", 2);
+			putstr_fd("Error: The map is not rectangular\n", 2);
 			return (0);
 		}
 		height++;
@@ -74,7 +72,7 @@ static int	if_walls_enclose(char **map, t_map_info *map_info)
 					|| column_count == 0 || column_count == map_info->width - 1)
 				&& (map[row_count][column_count] != '1'))
 			{
-				ft_putstr_fd("Error: The walls don't enclose the map.\n", 2);
+				putstr_fd("Error: The walls don't enclose the map.\n", 2);
 				return (0);
 			}
 			column_count++;
@@ -98,7 +96,7 @@ static int	if_a_valid_element_and_store(char c, t_map_info *map_info)
 		map_info->player++;
 	else if (c != '0' && c != '1')
 	{
-		ft_putstr_fd("Error: An invalid character exists in the map\n", 2);
+		putstr_fd("Error: An invalid character exists in the map\n", 2);
 		return (0);
 	}
 	return (1);
@@ -136,7 +134,7 @@ static int	if_valid_elements(char **map, t_map_info *map_info)
 	}
 	if (map_info->collect < 1 || map_info->exit != 1 || map_info->player != 1)
 	{
-		ft_putstr_fd("Error: Map elements are incorrect.\n", 2);
+		putstr_fd("Error: Map elements are incorrect.\n", 2);
 		return (0);
 	}
 	return (1);
@@ -161,6 +159,6 @@ int	validate_map_data(char **map, t_map_info *map_info)
 		return (0);
 	if (!if_valid_path(map, map_info))
 		return (0);
-	ft_putstr_fd("Map validation check completed: The map is valid.\n", 1);
+	putstr_fd("Map validation check completed: The map is valid.\n", 1);
 	return (1);
 }

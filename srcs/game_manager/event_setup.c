@@ -1,11 +1,12 @@
 /*
-file: srcs/event_setup.c
+file: srcs/game_manager/event_setup.c
 description: Handle player movement logic, item collection, exit checks,
-             and key-press events.
+			 and key-press events.
 author: hosu-kim
-created: 2025/03/08 11:39:47
+created: 2025/03/08 10:39:47 UTC
 */
-#include "so_long.h"
+
+#include "mini_dungeon_escape.h"
 
 /**
  * @brief Check if the target position is within bounds and not a wall.
@@ -78,9 +79,9 @@ void	move_player(t_game_resources *game, int dx, int dy)
 	game->player_y = new_y;
 	game->moves++;
 	render_map(game);
-	ft_putstr_fd("Moves: ", 1);
-	ft_putnbr_fd(game->moves, 1);
-	ft_putstr_fd("\n", 1);
+	putstr_fd("Moves: ", 1);
+	putnbr_fd(game->moves, 1);
+	putstr_fd("\n", 1);
 }
 
 /**

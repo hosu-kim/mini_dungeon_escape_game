@@ -1,16 +1,13 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   if_valid_path.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/08 11:38:46 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/27 15:25:00 by hoskim           ###   ########seoul.kr  */
-/*                                                                            */
-/* ************************************************************************** */
+/*
+file: srcs/map_manager/if_valid_path.c
+description: Implements path validation for the game map using
+			 a flood fill algorithm. It ensures that the player can reach
+			 all collectibles and the exit from their starting position.
+author: hosu-kim
+created: 2025/03/08 10:38:46 UTC
+*/
 
-#include "so_long.h"
+#include "mini_dungeon_escape.h"
 
 static void	fill_map_structure(char **map_copy, t_map_info *map_info)
 {
@@ -56,7 +53,7 @@ static int	check_path_result(char **map_copy, t_map_info *check_map)
 {
 	if (check_map->collect > 0 || check_map->exit > 0)
 	{
-		ft_putstr_fd("Error: Not all collectibles or exit are reachable.\n", 2);
+		putstr_fd("Error: Not all collectibles or exit are reachable.\n", 2);
 		free_map_data_storage(map_copy);
 		return (0);
 	}
@@ -80,7 +77,7 @@ int	if_valid_path(char **map, t_map_info *map_info)
 	find_player_position(map_copy, &player_x, &player_y);
 	if (player_x == -1 || player_y == -1)
 	{
-		ft_putstr_fd("Error: Player position not found.\n", 2);
+		putstr_fd("Error: Player position not found.\n", 2);
 		free_map_data_storage(map_copy);
 		return (0);
 	}

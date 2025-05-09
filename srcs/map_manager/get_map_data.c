@@ -1,16 +1,14 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_map_data.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/08 11:36:50 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/29 12:52:23 by hoskim           ###   ########seoul.kr  */
-/*                                                                            */
-/* ************************************************************************** */
+/*
+file: srcs/map_manager/get_map_data.c
+description: Contains functions responsible for reading and parsing map data
+			 from a '.ber' file.
+			 This includes validating the file extension, opening the file,
+			 and loading its contents into memory for the game.
+author: hosu-kim
+created: 2025/03/08 10:36:50 UTC
+*/
 
-#include "so_long.h"
+#include "mini_dungeon_escape.h"
 
 /**
  * @brief Checks if extension is ".ber"
@@ -52,13 +50,13 @@ int	read_map_file(char *filename)
 
 	if (!check_file_extension(filename))
 	{
-		ft_putstr_fd("Error: Bad extension\n", 2);
+		putstr_fd("Error: Bad extension\n", 2);
 		return (-1);
 	}
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_putstr_fd("Error: Failed to open file\n", 2);
+		putstr_fd("Error: Failed to open file\n", 2);
 		return (-1);
 	}
 	return (fd);
@@ -98,7 +96,7 @@ char	**get_map_data(char *filepath)
 	line_count = count_lines_of_map(filepath);
 	if (line_count <= 0)
 	{
-		ft_putstr_fd("Error: The map is empty\n", 2);
+		putstr_fd("Error: The map is empty\n", 2);
 		return (0);
 	}
 	fd = read_map_file(filepath);

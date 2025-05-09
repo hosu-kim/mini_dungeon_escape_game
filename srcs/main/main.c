@@ -1,16 +1,14 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 14:41:09 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/27 14:41:56 by hoskim           ###   ########seoul.kr  */
-/*                                                                            */
-/* ************************************************************************** */
+/*
+file: srcs/main/main.c
+description: Implements the main game execution logic and entry point
+			 for Mini Dungeon Escape. 
+			 This includes initializing the game environment, loading resources,
+			 handling the game loop, and processing command-line arguments.
+author: hosu-kim
+created: 2025/04/21 13:41:09 UTC
+*/
 
-#include "so_long.h"
+#include "mini_dungeon_escape.h"
 
 /**
  * @brief Executes the components of the game.
@@ -40,7 +38,7 @@ char	game_execution(t_map_info map_info, char **map_data_storage)
 	{
 		free_map_data_storage(game_resources.map);
 		game_resources.map = NULL;
-		ft_putstr_fd("Error: Graphic system preparation failed.\n", 2);
+		putstr_fd("Error: Graphic system preparation failed.\n", 2);
 		return (0);
 	}
 	init_game_resources(&game_resources, map_data_storage, &map_info);
@@ -48,7 +46,7 @@ char	game_execution(t_map_info map_info, char **map_data_storage)
 	{
 		free_map_data_storage(game_resources.map);
 		game_resources.map = NULL;
-		ft_putstr_fd("Error: Window creation failed.\n", 2);
+		putstr_fd("Error: Window creation failed.\n", 2);
 		return (0);
 	}
 	load_game_images(&game_resources);
@@ -74,13 +72,13 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		ft_putstr_fd("Usage: ./so_long <map_file_path>\n", 2);
+		putstr_fd("Usage: ./so_long <map_file_path>\n", 2);
 		return (1);
 	}
 	map_data_storage = get_map_data(argv[1]);
 	if (!map_data_storage)
 	{
-		ft_putstr_fd("Error: Failed to read map\n", 2);
+		putstr_fd("Error: Failed to read map\n", 2);
 		return (1);
 	}
 	if (!validate_map_data(map_data_storage, &map_info))

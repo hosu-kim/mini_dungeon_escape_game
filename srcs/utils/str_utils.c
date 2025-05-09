@@ -1,16 +1,13 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_str_utils.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/08 18:16:51 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/27 15:33:16 by hoskim           ###   ########seoul.kr  */
-/*                                                                            */
-/* ************************************************************************** */
+/*
+file: srcs/utils/str_utils.c
+description: Provides string manipulation utility functions,
+			 including calculating string length, concatenating two strings,
+			 and converting an integer to a string.
+author: hosu-kim
+created: 2025/03/08 17:16:51 UTC
+*/
 
-#include "so_long.h"
+#include "mini_dungeon_escape.h"
 
 /**
  * @brief Measures the length of string.

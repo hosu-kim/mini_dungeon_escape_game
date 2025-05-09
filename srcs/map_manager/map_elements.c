@@ -1,16 +1,12 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   map_elements.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/08 15:13:44 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/28 18:36:28 by hoskim           ###   ########seoul.kr  */
-/*                                                                            */
-/* ************************************************************************** */
+/*
+file: srcs/map_manager/map_elements.c
+description: Provides functionality to locate specific elements within
+			 the game map, such as finding the player's starting position.
+author: hosu-kim
+created: 2025/03/08 14:13:44 UTC
+*/
 
-#include "so_long.h"
+#include "mini_dungeon_escape.h"
 
 void	find_player_position(char **map_data_storage, int *x, int *y)
 {

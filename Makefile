@@ -1,16 +1,5 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/03/04 20:39:28 by hoskim            #+#    #+#              #
-#    Updated: 2025/04/27 20:20:34 by hoskim           ###   ########seoul.kr   #
-#                                                                              #
-# **************************************************************************** #
 
-NAME = so_long
+NAME = mini_dungeon_escape
 CC = clang
 CFLAGS = -Wall -Wextra -Werror
 
@@ -21,7 +10,7 @@ MAP_MANAGER_DIR = $(SRCS_DIR)map_manager/
 GAME_MANAGER_DIR = $(SRCS_DIR)game_manager/
 UTILS_DIR = $(SRCS_DIR)utils/
 
-SRCS = $(MAIN_DIR)so_long.c \
+SRCS = $(MAIN_DIR)main.c \
 		$(GAME_MANAGER_DIR)event_setup.c \
 		$(GAME_MANAGER_DIR)game_env_setup.c \
 		$(GAME_MANAGER_DIR)rendering_setup.c \
@@ -31,8 +20,8 @@ SRCS = $(MAIN_DIR)so_long.c \
 		$(MAP_MANAGER_DIR)if_valid_map_data.c \
 		$(MAP_MANAGER_DIR)map_reading.c \
 		$(UTILS_DIR)memory_deallocation.c \
-		$(UTILS_DIR)ft_str_utils.c \
-		$(UTILS_DIR)ft_put_utils.c
+		$(UTILS_DIR)put_utils.c \
+		$(UTILS_DIR)str_utils.c \
 
 OBJS = $(SRCS:.c=.o)
 INCLUDES = -Iincludes -Imlx

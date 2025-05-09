@@ -1,16 +1,14 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   memory_deallocation.c                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hoskim <hoskim@student.42prague.com>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/23 22:25:04 by hoskim            #+#    #+#             */
-/*   Updated: 2025/04/26 22:18:23 by hoskim           ###   ########seoul.kr  */
-/*                                                                            */
-/* ************************************************************************** */
+/*
+file: srcs/utils/memory_deallocation.c
+description: Manages memory deallocation and resource cleanup for the game.
+			 This includes functions to free map data, destroy game images,
+			 and handle the overall game exit process
+			 by releasing all allocated resources.
+author: hosu-kim
+created: 2025/03/23 21:25:04 UTC
+*/
 
-#include "so_long.h"
+#include "mini_dungeon_escape.h"
 
 /**
  * @brief Frees all memory allocated for a 2D character array
