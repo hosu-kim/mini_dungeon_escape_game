@@ -2,6 +2,7 @@
 <p align="center">
   <img src="images/example.png" alt="Run example" width="500"/>
 </p>
+
 ## Description
 
 Mini Dungeon Escape is a 2D game developed in C using the MiniLibX graphics library. The player navigates a character through a dungeon map, collecting items with the objective of reaching an exit point. The game features map loading from `.ber` files, comprehensive map validation, and basic game mechanics.
