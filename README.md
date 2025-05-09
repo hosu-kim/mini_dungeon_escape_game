@@ -56,12 +56,12 @@ The project is organized into the following main directories:
 To run the game, execute the compiled program from the terminal, providing the path to a valid `.ber` map file as an argument:
 
 ```bash
-./mini_dungeon_escape path/to/your_map.ber
+./mini_dungeon_escape maps_valid/a_map.ber
 ```
 
 Example:
 ```bash
-./mini_dungeon_escape maps/example_map.ber
+./mini_dungeon_escape maps_valid/ok9.ber
 ```
 
 ## Makefile Commands
